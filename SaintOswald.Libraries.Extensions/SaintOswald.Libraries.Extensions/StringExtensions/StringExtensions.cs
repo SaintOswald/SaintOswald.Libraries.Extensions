@@ -38,6 +38,18 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         public static bool IsNullOrWhiteSpace(this string str) => string.IsNullOrWhiteSpace(str);
 
         /// <summary>
+        /// Trims trailing white space and punctuation characters from the specified string
+        /// </summary>
+        /// <param name="str">The string to trim</param>
+        /// <returns>
+        /// The specified string with trailing white space and punctuation characters removed
+        /// </returns>
+        public static string TrimEndWhiteSpaceAndPunctuation(this string str)
+        {
+            return Regex.Replace(str, @"[\W_]+$", "");
+        }
+
+        /// <summary>
         /// Truncates the specified string to the given maximum length.  The string will be returned
         /// as-is if it's length is shorter than or equal to the maximum length.  A truncated string
         /// will be suffixed with "..." and the truncated string plus the suffix will be no longer
@@ -61,7 +73,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
 
             if (str.IsNullOrEmpty() || str.Length <= maximumLength) { return str; }
 
-            return Regex.Replace(str.Substring(0, maximumLength - 3), @"[\W_]+$", "") + "...";
+            return str.Substring(0, maximumLength - 3).TrimEndWhiteSpaceAndPunctuation() + "...";
         }
     }
 }
