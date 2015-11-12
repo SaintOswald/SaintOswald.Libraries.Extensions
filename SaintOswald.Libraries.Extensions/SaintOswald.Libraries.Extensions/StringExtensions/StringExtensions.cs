@@ -87,5 +87,23 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
 
             return str.Substring(0, maximumLength - 3).TrimEndWhiteSpaceAndPunctuation() + "...";
         }
+
+        /// <summary>
+        /// Collapses white space in the specified string by replacing all non-space white space
+        /// characters with a space (i.e. " ").  Replaces consecutive spaces with a single space
+        /// and trims leading and trailing spaces
+        /// </summary>
+        /// <param name="str">The string to collapse white space for</param>
+        /// <returns>The specified string with white space collapsed</returns>
+        public static string CollapseWhiteSpace(this string str)
+        {
+            if (str.IsNullOrEmpty()) { return str; }
+
+            // Replace all whitespace characters with a single space
+            string normalised = Regex.Replace(str, @"\s", " ").Trim();
+
+            // Remove consecutive spaces
+            return Regex.Replace(normalised, " {2,}", " ");
+        }
     }
 }

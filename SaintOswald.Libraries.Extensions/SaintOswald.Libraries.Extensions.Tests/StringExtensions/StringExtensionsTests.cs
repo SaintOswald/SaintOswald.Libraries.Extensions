@@ -158,5 +158,45 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             "Test of truncation".Truncate(2);
         }
         #endregion
+
+        #region CollapseWhiteSpace
+        [TestMethod]
+        public void TestCollapseWhiteSpace()
+        {
+            AreEqual("Test Collapse White Space", "Test\tCollapse\r\nWhite Space".CollapseWhiteSpace());
+        }
+
+        [TestMethod]
+        public void TestCollapseWhiteSpaceTrimsSpaces()
+        {
+            AreEqual("Test Collapse White Space", " Test Collapse White Space ".CollapseWhiteSpace());
+        }
+
+        [TestMethod]
+        public void TestCollapseWhiteSpaceTrimsNewlinesAndTabs()
+        {
+            AreEqual("Test Collapse White Space", "\nTest Collapse White Space\t".CollapseWhiteSpace());
+        }
+
+        [TestMethod]
+        public void TestCollapseWhiteSpaceRemovesConsecutiveSpaces()
+        {
+            AreEqual("Test Collapse White Space", "Test  Collapse White Space".CollapseWhiteSpace());
+            AreEqual("Test Collapse White Space", "Test \t  \t Collapse White Space".CollapseWhiteSpace());
+        }
+
+        [TestMethod]
+        public void TestCollapseWhiteSpaceNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.CollapseWhiteSpace());
+        }
+
+        [TestMethod]
+        public void TestCollapseWhiteSpaceEmptyStringReturnsEmpty()
+        {
+            AreEqual("", "".CollapseWhiteSpace());
+        }
+        #endregion
     }
 }
