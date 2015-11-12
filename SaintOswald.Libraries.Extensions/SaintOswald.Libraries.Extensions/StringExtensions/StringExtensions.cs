@@ -50,6 +50,18 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         }
 
         /// <summary>
+        /// Trims leading white space and punctuation characters from the specified string
+        /// </summary>
+        /// <param name="str">The string to trim</param>
+        /// <returns>
+        /// The specified string with leading white space and punctuation characters removed
+        /// </returns>
+        public static string TrimStartWhiteSpaceAndPunctuation(this string str)
+        {
+            return Regex.Replace(str, @"^[\W_]+", "");
+        }
+
+        /// <summary>
         /// Truncates the specified string to the given maximum length.  The string will be returned
         /// as-is if it's length is shorter than or equal to the maximum length.  A truncated string
         /// will be suffixed with "..." and the truncated string plus the suffix will be no longer

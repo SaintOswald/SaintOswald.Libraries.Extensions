@@ -55,7 +55,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             AreEqual("Test of trim end white space and punctuation", $"Test of trim end white space and punctuation{Environment.NewLine}".TrimEndWhiteSpaceAndPunctuation());
             AreEqual("Test of trim end white space and punctuation", "Test of trim end white space and punctuation?".TrimEndWhiteSpaceAndPunctuation());
             AreEqual("Test of trim end white space and punctuation", "Test of trim end white space and punctuation? ! @ ".TrimEndWhiteSpaceAndPunctuation());
-        }// Null or empty, only end punc
+        }
 
         public void TrimEndWhiteSpaceAndPunctuationOnlyStripsEndPunctuation()
         {
@@ -71,6 +71,33 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         public void TrimEndWhiteSpaceAndPunctuationEmptyReturnsEmpty()
         {
             AreEqual("", "".TrimEndWhiteSpaceAndPunctuation());
+        }
+        #endregion
+
+        #region TrimStartWhiteSpaceAndPunctuation
+        [TestMethod]
+        public void TrimStartWhiteSpaceAndPunctuation()
+        {
+            AreEqual("Test of trim end white space and punctuation", " Test of trim end white space and punctuation".TrimStartWhiteSpaceAndPunctuation());
+            AreEqual("Test of trim end white space and punctuation", $"{Environment.NewLine}Test of trim end white space and punctuation".TrimStartWhiteSpaceAndPunctuation());
+            AreEqual("Test of trim end white space and punctuation", "?Test of trim end white space and punctuation".TrimStartWhiteSpaceAndPunctuation());
+            AreEqual("Test of trim end white space and punctuation", "? ! @ Test of trim end white space and punctuation".TrimStartWhiteSpaceAndPunctuation());
+        }
+
+        public void TrimStartWhiteSpaceAndPunctuationOnlyStripsStartPunctuation()
+        {
+            AreEqual("Test of trim end white space and punc!uatio@", "!Test of trim end white space and punc!uation@".TrimStartWhiteSpaceAndPunctuation());
+        }
+
+        public void TrimStartWhiteSpaceAndPunctuationNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.TrimStartWhiteSpaceAndPunctuation());
+        }
+
+        public void TrimStartWhiteSpaceAndPunctuationEmptyReturnsEmpty()
+        {
+            AreEqual("", "".TrimStartWhiteSpaceAndPunctuation());
         }
         #endregion
 
