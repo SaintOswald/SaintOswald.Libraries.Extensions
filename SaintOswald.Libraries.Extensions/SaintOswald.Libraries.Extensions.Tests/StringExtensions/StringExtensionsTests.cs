@@ -31,5 +31,19 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             IsFalse("Test of IsNullOrEmpty".IsNullOrEmpty());
         }
         #endregion
+
+        #region IsNullOrWhiteSpace
+        [TestMethod]
+        public void IsNullOrWhiteSpace()
+        {
+            string nullString = null;
+            IsTrue(nullString.IsNullOrWhiteSpace());
+            IsTrue("".IsNullOrWhiteSpace());
+            IsTrue(" ".IsNullOrWhiteSpace());
+            IsTrue(System.Environment.NewLine.IsNullOrWhiteSpace());
+
+            IsFalse("Test of IsNullOrWhitespace".IsNullOrWhiteSpace());
+        }
+        #endregion
     }
 }

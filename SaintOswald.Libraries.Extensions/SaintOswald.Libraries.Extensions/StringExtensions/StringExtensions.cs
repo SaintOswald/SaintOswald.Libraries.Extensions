@@ -23,6 +23,15 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// </summary>
         /// <param name="str">The string to check</param>
         /// <returns>True if the specified string is null or empty, otherwise returns false</returns>
+        /// <seealso cref="System.String.IsNullOrEmpty(string)"/>
         public static bool IsNullOrEmpty(this string str) => string.IsNullOrEmpty(str);
+
+        /// <summary>
+        /// Checks if the specified string is null or white space
+        /// </summary>
+        /// <param name="str">The string to check</param>
+        /// <returns>True if the specified string is null or whitespace, otherwise returns false</returns>
+        /// <seealso cref="System.String.IsNullOrWhiteSpace(string)"/>
+        public static bool IsNullOrWhiteSpace(this string str) => string.IsNullOrWhiteSpace(str);
     }
 }
