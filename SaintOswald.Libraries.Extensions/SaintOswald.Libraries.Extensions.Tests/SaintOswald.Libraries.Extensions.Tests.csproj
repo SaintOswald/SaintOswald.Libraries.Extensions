@@ -51,6 +51,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensions\StringExtensionsTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SaintOswald.Libraries.Extensions\SaintOswald.Libraries.Extensions.csproj">
+      <Project>{7c1ab548-a755-4b5d-89de-9db09ee0064a}</Project>
+      <Name>SaintOswald.Libraries.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
