@@ -173,6 +173,12 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         }
 
         [TestMethod]
+        public void TestCollapseWhiteSpaceTrimsMultipleSpaces()
+        {
+            AreEqual("Test Collapse White Space", "   Test Collapse White Space   ".CollapseWhiteSpace());
+        }
+
+        [TestMethod]
         public void TestCollapseWhiteSpaceTrimsNewlinesAndTabs()
         {
             AreEqual("Test Collapse White Space", "\nTest Collapse White Space\t".CollapseWhiteSpace());

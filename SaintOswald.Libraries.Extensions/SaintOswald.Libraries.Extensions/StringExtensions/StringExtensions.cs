@@ -100,10 +100,10 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
             if (str.IsNullOrEmpty()) { return str; }
 
             // Replace all non-space white space characters with a single space
-            string normalised = Regex.Replace(str, @"[^\S ]", " ").Trim();
+            string normalised = Regex.Replace(str, @"[^\S ]", " ");
 
             // Remove consecutive spaces
-            return Regex.Replace(normalised, " {2,}", " ");
+            return Regex.Replace(normalised, " {2,}", " ").Trim();
         }
     }
 }
