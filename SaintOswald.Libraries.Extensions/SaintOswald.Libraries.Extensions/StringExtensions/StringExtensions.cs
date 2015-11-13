@@ -99,8 +99,8 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         {
             if (str.IsNullOrEmpty()) { return str; }
 
-            // Replace all whitespace characters with a single space
-            string normalised = Regex.Replace(str, @"\s", " ").Trim();
+            // Replace all non-space white space characters with a single space
+            string normalised = Regex.Replace(str, @"[^\S ]", " ").Trim();
 
             // Remove consecutive spaces
             return Regex.Replace(normalised, " {2,}", " ");
