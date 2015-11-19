@@ -205,62 +205,121 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         }
         #endregion
 
-        #region EverythingBefore
+        #region EverythingBeforeFirst
         [TestMethod]
-        public void TestEverythingBefore()
+        public void TestEverythingBeforeFirst()
         {
-            AreEqual("test", "test@example.com".EverythingBefore("@"));
+            AreEqual("test", "test@example.com".EverythingBeforeFirst("@"));
         }
 
         [TestMethod]
-        public void TestEverythingBeforeMultipleDelimitersReturnsBeforeFirst()
+        public void TestEverythingBeforeFirstMultipleDelimitersReturnsBeforeFirst()
         {
-            AreEqual("test", "test@something@example.com".EverythingBefore("@"));
+            AreEqual("test", "test@something@example.com".EverythingBeforeFirst("@"));
         }
 
         [TestMethod]
-        public void TestEverythingBeforeMultiCharacterDelimiter()
+        public void TestEverythingBeforeFirstMultiCharacterDelimiter()
         {
-            AreEqual("tes", "test@example.com".EverythingBefore("t@e"));
+            AreEqual("tes", "test@example.com".EverythingBeforeFirst("t@e"));
         }
 
         [TestMethod]
-        public void TestEverythingBeforeDelimiterNotInStringReturnsNull()
+        public void TestEverythingBeforeFirstDelimiterNotInStringReturnsNull()
         {
-            IsNull("test@example.com".EverythingBefore("-"));
+            IsNull("test@example.com".EverythingBeforeFirst("-"));
         }
 
         [TestMethod]
-        public void TestEverythingBeforeDelimiterFirstCharacterReturnsNull()
+        public void TestEverythingBeforeFirstDelimiterFirstCharacterReturnsNull()
         {
-            IsNull("test@example.com".EverythingBefore("t"));
+            IsNull("test@example.com".EverythingBeforeFirst("t"));
         }
 
         [TestMethod]
-        public void TestEverythingBeforeStringNullReturnsNull()
+        public void TestEverythingBeforeFirstStringNullReturnsNull()
         {
             string s = null;
-            IsNull(s.EverythingBefore("@"));
+            IsNull(s.EverythingBeforeFirst("@"));
         }
 
         [TestMethod]
-        public void TestEverythingBeforeStringEmptyReturnsNull()
+        public void TestEverythingBeforeFirstStringEmptyReturnsNull()
         {
-            IsNull("".EverythingBefore("@"));
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void TestEverythingBeforeDelimiterNullThrowsException()
-        {
-            "test@example.com".EverythingBefore(null);
+            IsNull("".EverythingBeforeFirst("@"));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestEverythingBeforeDelimiterEmptyThrowsException()
+        public void TestEverythingBeforeFirstDelimiterNullThrowsException()
         {
-            "test@example.com".EverythingBefore("");
+            "test@example.com".EverythingBeforeFirst(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestEverythingBeforeFirstDelimiterEmptyThrowsException()
+        {
+            "test@example.com".EverythingBeforeFirst("");
+        }
+        #endregion
+
+        #region EverythingAfterLast
+        [TestMethod]
+        public void TestEverythingAfterLast()
+        {
+            AreEqual("example.com", "test@example.com".EverythingAfterLast("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterLastMultipleDelimitersReturnsAfterLast()
+        {
+            AreEqual("example.com", "test@something@example.com".EverythingAfterLast("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterLastMultiCharacterDelimiter()
+        {
+            AreEqual("xample.com", "test@example.com".EverythingAfterLast("t@e"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterLastDelimiterNotInStringReturnsNull()
+        {
+            Assert.IsNull("test@example.com".EverythingAfterLast("-"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterLastDelimiterLastCharacterReturnsNull()
+        {
+            Assert.IsNull("test@example.com".EverythingAfterLast("m"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterLastStringNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.EverythingAfterLast("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterLastStringEmptyReturnsNull()
+        {
+            IsNull("".EverythingAfterLast("@"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestEverythingAfterLastDelimiterNullThrowsException()
+        {
+            "test@example.com".EverythingAfterLast(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestEverythingAfterLastDelimiterEmptyThrowsException()
+        {
+            "test@example.com".EverythingAfterLast("");
         }
         #endregion
     }

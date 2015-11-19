@@ -120,9 +120,9 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// <exception cref="System.ArgumentException">
         /// Thrown when the specified delimiter is null or empty
         /// </exception>
-        public static string EverythingBefore(this string str, string delimiter)
+        public static string EverythingBeforeFirst(this string str, string delimiter)
         {
-            if(delimiter.IsNullOrEmpty())
+            if (delimiter.IsNullOrEmpty())
             {
                 throw new ArgumentException("Delimiter cannot be null or empty", nameof(delimiter));
             }
@@ -131,6 +131,33 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
 
             int position = str.IndexOf(delimiter, StringComparison.CurrentCulture);
             return (position <= 0) ? null : str.Substring(0, position);
+        }
+
+        /// <summary>
+        /// Returns everything after the last occurrence of the specified delimiter
+        /// </summary>
+        /// <param name="str">
+        /// The string to return everything after the last occurrence of the delimiter for
+        /// </param>
+        /// <param name="delimiter">The delimiter to return everything after</param>
+        /// <returns>
+        /// Returns everything after the last occurrence of the specified delimiter if it exists
+        /// within the given string, otherwise returns null
+        /// </returns>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when the specified delimiter is null or empty
+        /// </exception>
+        public static string EverythingAfterLast(this string str, string delimiter)
+        {
+            if (delimiter.IsNullOrEmpty())
+            {
+                throw new ArgumentException("Delimiter cannot be null or empty", nameof(delimiter));
+            }
+
+            if (str.IsNullOrEmpty()) { return null; }
+
+            int position = str.LastIndexOf(delimiter, StringComparison.CurrentCulture);
+            return (position == -1 || position == str.Length - 1) ? null : str.Substring(position + delimiter.Length);
         }
     }
 }
