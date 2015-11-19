@@ -204,5 +204,64 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             AreEqual("", "".CollapseWhiteSpace());
         }
         #endregion
+
+        #region EverythingBefore
+        [TestMethod]
+        public void TestEverythingBefore()
+        {
+            AreEqual("test", "test@example.com".EverythingBefore("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeMultipleDelimitersReturnsBeforeFirst()
+        {
+            AreEqual("test", "test@something@example.com".EverythingBefore("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeMultiCharacterDelimiter()
+        {
+            AreEqual("tes", "test@example.com".EverythingBefore("t@e"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeDelimiterNotInStringReturnsNull()
+        {
+            IsNull("test@example.com".EverythingBefore("-"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeDelimiterFirstCharacterReturnsNull()
+        {
+            IsNull("test@example.com".EverythingBefore("t"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeStringNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.EverythingBefore("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeStringEmptyReturnsNull()
+        {
+            IsNull("".EverythingBefore("@"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestEverythingBeforeDelimiterNullThrowsException()
+        {
+            "test@example.com".EverythingBefore(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestEverythingBeforeDelimiterEmptyThrowsException()
+        {
+            "test@example.com".EverythingBefore("");
+        }
+        #endregion
     }
 }
