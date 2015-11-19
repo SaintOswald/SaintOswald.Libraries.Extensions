@@ -182,5 +182,36 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         {
             return (str.IsNullOrWhiteSpace()) ? alternative : str;
         }
+
+        /// <summary>
+        /// Returns the plural form of the specified string when the given count is less than or equal to 0
+        /// or greater than 1.  The plural form is obtained by adding "s" to the specified string or by
+        /// returning the given plural form when specified.  If the specified count is 1 the original string
+        /// value is returned
+        /// </summary>
+        /// <param name="str">The string to return the plural form for</param>
+        /// <param name="count">
+        /// The count to determine if the plural or singular form of the specified string should be returned
+        /// </param>
+        /// <param name="pluralForm">The plural form to return for the given string (optional)</param>
+        /// <returns>
+        /// Returns either the specified string plus "s" or the optional specified plural form if the given
+        /// count is less than or equal to 0 or greater than 1.  If the count is 1 then the original string
+        /// value is returned
+        /// </returns>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when plural form has been specified but is empty or white space
+        /// </exception>
+        public static string ToPluralForCount(this string str, int count, string pluralForm = null)
+        {
+            if (pluralForm != null && pluralForm.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentException("Plural form cannot be empty or white space", nameof(pluralForm));
+            }
+
+            if (str.IsNullOrEmpty()) { return str; }
+
+            return (count <= 0 || count > 1) ? (pluralForm ?? str + "s") : str;
+        }
     }
 }

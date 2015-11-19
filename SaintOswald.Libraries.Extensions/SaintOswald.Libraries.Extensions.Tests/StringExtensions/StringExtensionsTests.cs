@@ -363,5 +363,67 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             AreEqual("Alternative", "   ".ValueOr("Alternative"));
         }
         #endregion
+
+        #region ToPluralForCount
+        [TestMethod]
+        public void TestToPluralForCount()
+        {
+            AreEqual("Test", "Test".ToPluralForCount(1));   // There is 1 Test
+            AreEqual("Tests", "Test".ToPluralForCount(0));  // There are 0 Tests
+            AreEqual("Tests", "Test".ToPluralForCount(2));  // There are 2 Tests
+        }
+
+        [TestMethod]
+        public void TestToPluralForCountNegativeCount()
+        {
+            AreEqual("Degrees", "Degree".ToPluralForCount(-1));   // It is -1 Degrees
+        }
+
+        [TestMethod]
+        public void TestToPluralForCountValueNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.ToPluralForCount(0));
+            IsNull(s.ToPluralForCount(1));
+            IsNull(s.ToPluralForCount(2));
+        }
+
+        [TestMethod]
+        public void TestToPluralForCountValueEmptyReturnsEmpty()
+        {
+            AreEqual("", "".ToPluralForCount(-1));
+            AreEqual("", "".ToPluralForCount(0));
+            AreEqual("", "".ToPluralForCount(1));
+            AreEqual("", "".ToPluralForCount(2));
+        }
+
+        [TestMethod]
+        public void TestToPluralForCountSpecifyPluralForm()
+        {
+            AreEqual("Category", "Category".ToPluralForCount(1, "Categories"));    // There is 1 Category
+            AreEqual("Categories", "Category".ToPluralForCount(0, "Categories"));  // There are 0 Categories
+            AreEqual("Categories", "Category".ToPluralForCount(2, "Categories"));  // There are 2 Categories
+        }
+
+        [TestMethod]
+        public void TestToPluralForCountPluralFormNullIsIgnored()
+        {
+            AreEqual("Tests", "Test".ToPluralForCount(2, null));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestToPluralForCountPluralFormEmptyThrowsException()
+        {
+            "Test".ToPluralForCount(1, "");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestToPluralForCountPluralFormWhiteSpaceThrowsException()
+        {
+            "Test".ToPluralForCount(1, " ");
+        }
+        #endregion
     }
 }
