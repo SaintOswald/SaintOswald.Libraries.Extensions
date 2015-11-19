@@ -12,6 +12,7 @@
  ***********************************************************************************/
 
 using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace SaintOswald.Libraries.Extensions.StringExtensions
@@ -212,6 +213,18 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
             if (str.IsNullOrEmpty()) { return str; }
 
             return (count <= 0 || count > 1) ? (pluralForm ?? str + "s") : str;
+        }
+
+        /// <summary>
+        /// Converts the specified string to title case by capitalising the first letter of each word
+        /// using the culture of the current thread.  Words entirely in uppercase are treated as
+        /// acronyms and not modified
+        /// </summary>
+        /// <param name="str">The string to convert to title case</param>
+        /// <returns>The specified string converted to title case</returns>
+        public static string ToTitleCase(this string str)
+        {
+            return (str.IsNullOrEmpty() ? str : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str));
         }
     }
 }

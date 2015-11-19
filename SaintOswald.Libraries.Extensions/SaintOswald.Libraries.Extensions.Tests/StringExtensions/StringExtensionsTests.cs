@@ -425,5 +425,60 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             "Test".ToPluralForCount(1, " ");
         }
         #endregion
+
+        #region ToTitleCase
+        [TestMethod]
+        public void TestToTitleCase()
+        {
+            AreEqual("Test Of To Title Case", "test of to title case".ToTitleCase());
+        }
+
+        public void TestToTitleCaseSingleWord()
+        {
+            AreEqual("Test", "test".ToTitleCase());
+        }
+
+        public void TestToTitleCaseSinglLetter()
+        {
+            AreEqual("T", "t".ToTitleCase());
+        }
+
+        [TestMethod]
+        public void TestToTitleCaseAlreadyTitleCase()
+        {
+            AreEqual("Test Of To Title Case", "Test Of To Title Case".ToTitleCase());
+        }
+
+        [TestMethod]
+        public void TestToTitleCaseAcronymNotModified()
+        {
+            AreEqual("This Is A HTML Test", "this is a HTML test".ToTitleCase());
+        }
+
+        [TestMethod]
+        public void TestToTitleCaseWithLeadingAndTrailingSpaces()
+        {
+            AreEqual(" Test Of To Title Case ", " test of to title case ".ToTitleCase());
+        }
+
+        [TestMethod]
+        public void TestToTitleCaseValueNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.ToTitleCase());
+        }
+
+        [TestMethod]
+        public void TestToTitleCaseValueEmptyReturnsEmpty()
+        {
+            AreEqual("", "".ToTitleCase());
+        }
+
+        [TestMethod]
+        public void TestToTitleCaseValueWhiteSpaceReturnsWhiteSpace()
+        {
+            AreEqual("   ", "   ".ToTitleCase());
+        }
+        #endregion
     }
 }
