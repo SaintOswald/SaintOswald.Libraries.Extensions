@@ -237,6 +237,13 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         }
 
         [TestMethod]
+        public void TestEverythingBeforeFirstSpecifyCulture()
+        {
+            IsNull("test@example.com".EverythingBeforeFirst("@E"));
+            AreEqual("test", "test@example.com".EverythingBeforeFirst("@E", StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        [TestMethod]
         public void TestEverythingBeforeFirstStringNullReturnsNull()
         {
             string s = null;
@@ -293,6 +300,13 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         public void TestEverythingAfterLastDelimiterLastCharacterReturnsNull()
         {
             Assert.IsNull("test@example.com".EverythingAfterLast("m"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterLastSpecifyCulture()
+        {
+            IsNull("test@example.com".EverythingAfterLast("@E"));
+            AreEqual("xample.com", "test@example.com".EverythingAfterLast("@E", StringComparison.CurrentCultureIgnoreCase));
         }
 
         [TestMethod]
