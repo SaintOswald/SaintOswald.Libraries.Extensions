@@ -23,7 +23,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
     {
         #region IsNullOrEmpty
         [TestMethod]
-        public void IsNullOrEmpty()
+        public void TestIsNullOrEmpty()
         {
             string s = null;
             IsTrue(s.IsNullOrEmpty());
@@ -35,7 +35,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
 
         #region IsNullOrWhiteSpace
         [TestMethod]
-        public void IsNullOrWhiteSpace()
+        public void TestIsNullOrWhiteSpace()
         {
             string s = null;
             IsTrue(s.IsNullOrWhiteSpace());
@@ -49,7 +49,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
 
         #region TrimEndWhiteSpaceAndPunctuation
         [TestMethod]
-        public void TrimEndWhiteSpaceAndPunctuation()
+        public void TestTrimEndWhiteSpaceAndPunctuation()
         {
             AreEqual("Test of trim end white space and punctuation", "Test of trim end white space and punctuation ".TrimEndWhiteSpaceAndPunctuation());
             AreEqual("Test of trim end white space and punctuation", $"Test of trim end white space and punctuation{Environment.NewLine}".TrimEndWhiteSpaceAndPunctuation());
@@ -57,18 +57,21 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             AreEqual("Test of trim end white space and punctuation", "Test of trim end white space and punctuation? ! @ ".TrimEndWhiteSpaceAndPunctuation());
         }
 
-        public void TrimEndWhiteSpaceAndPunctuationOnlyStripsEndPunctuation()
+        [TestMethod]
+        public void TestTrimEndWhiteSpaceAndPunctuationOnlyStripsEndPunctuation()
         {
             AreEqual("?est of trim end white space and punc!uation", "?est of trim end white space and punc!uation!".TrimEndWhiteSpaceAndPunctuation());
         }
 
-        public void TrimEndWhiteSpaceAndPunctuationNullReturnsNull()
+        [TestMethod]
+        public void TestTrimEndWhiteSpaceAndPunctuationNullReturnsNull()
         {
             string s = null;
             IsNull(s.TrimEndWhiteSpaceAndPunctuation());
         }
 
-        public void TrimEndWhiteSpaceAndPunctuationEmptyReturnsEmpty()
+        [TestMethod]
+        public void TestTrimEndWhiteSpaceAndPunctuationEmptyReturnsEmpty()
         {
             AreEqual("", "".TrimEndWhiteSpaceAndPunctuation());
         }
@@ -76,7 +79,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
 
         #region TrimStartWhiteSpaceAndPunctuation
         [TestMethod]
-        public void TrimStartWhiteSpaceAndPunctuation()
+        public void TestTrimStartWhiteSpaceAndPunctuation()
         {
             AreEqual("Test of trim end white space and punctuation", " Test of trim end white space and punctuation".TrimStartWhiteSpaceAndPunctuation());
             AreEqual("Test of trim end white space and punctuation", $"{Environment.NewLine}Test of trim end white space and punctuation".TrimStartWhiteSpaceAndPunctuation());
@@ -84,18 +87,21 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             AreEqual("Test of trim end white space and punctuation", "? ! @ Test of trim end white space and punctuation".TrimStartWhiteSpaceAndPunctuation());
         }
 
-        public void TrimStartWhiteSpaceAndPunctuationOnlyStripsStartPunctuation()
+        [TestMethod]
+        public void TestTrimStartWhiteSpaceAndPunctuationOnlyStripsStartPunctuation()
         {
-            AreEqual("Test of trim end white space and punc!uatio@", "!Test of trim end white space and punc!uation@".TrimStartWhiteSpaceAndPunctuation());
+            AreEqual("Test of trim end white space and punc!uation@", "!Test of trim end white space and punc!uation@".TrimStartWhiteSpaceAndPunctuation());
         }
 
-        public void TrimStartWhiteSpaceAndPunctuationNullReturnsNull()
+        [TestMethod]
+        public void TestTrimStartWhiteSpaceAndPunctuationNullReturnsNull()
         {
             string s = null;
             IsNull(s.TrimStartWhiteSpaceAndPunctuation());
         }
 
-        public void TrimStartWhiteSpaceAndPunctuationEmptyReturnsEmpty()
+        [TestMethod]
+        public void TestTrimStartWhiteSpaceAndPunctuationEmptyReturnsEmpty()
         {
             AreEqual("", "".TrimStartWhiteSpaceAndPunctuation());
         }
@@ -433,11 +439,13 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             AreEqual("Test Of To Title Case", "test of to title case".ToTitleCase());
         }
 
+        [TestMethod]
         public void TestToTitleCaseSingleWord()
         {
             AreEqual("Test", "test".ToTitleCase());
         }
 
+        [TestMethod]
         public void TestToTitleCaseSingleLetter()
         {
             AreEqual("T", "t".ToTitleCase());
@@ -483,70 +491,116 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
 
         #region ToTitleCaseFirstWord
         [TestMethod]
-        public void ToTitleCaseFirstWord()
+        public void TestToTitleCaseFirstWord()
         {
             AreEqual("Test of to title case first word", "test of to title case first word".ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordSingleWord()
+        public void TestToTitleCaseFirstWordSingleWord()
         {
             AreEqual("Test", "test".ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordSingleLetter()
+        public void TestToTitleCaseFirstWordSingleLetter()
         {
             AreEqual("T", "t".ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordAlreadyTitleCase()
+        public void TestToTitleCaseFirstWordAlreadyTitleCase()
         {
             AreEqual("Test of to title case first word", "Test of to title case first word".ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordAcronymNotModified()
+        public void TestToTitleCaseFirstWordAcronymNotModified()
         {
             AreEqual("HTML test", "HTML test".ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordWithLeadingWhiteSpace()
+        public void TestToTitleCaseFirstWordWithLeadingWhiteSpace()
         {
             AreEqual("   Test of to title case first word", "   test of to title case first word".ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordWithTrailingWhiteSpace()
+        public void TestToTitleCaseFirstWordWithTrailingWhiteSpace()
         {
             AreEqual("Test of to title case first word   ", "test of to title case first word   ".ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordWithLeadingAndTrailingWhiteSpace()
+        public void TestToTitleCaseFirstWordWithLeadingAndTrailingWhiteSpace()
         {
             AreEqual("   Test of to title case first word   ", "   test of to title case first word   ".ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordValueNullReturnsNull()
+        public void TestToTitleCaseFirstWordValueNullReturnsNull()
         {
             string s = null;
             IsNull(s.ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordValueEmptyReturnsEmpty()
+        public void TestToTitleCaseFirstWordValueEmptyReturnsEmpty()
         {
             AreEqual("", "".ToTitleCaseFirstWord());
         }
 
         [TestMethod]
-        public void ToTitleCaseFirstWordValueWhiteSpaceReturnsWhiteSpace()
+        public void TestToTitleCaseFirstWordValueWhiteSpaceReturnsWhiteSpace()
         {
             AreEqual("   ", "   ".ToTitleCaseFirstWord());
+        }
+        #endregion
+
+        #region Repeat
+        [TestMethod]
+        public void TestRepeat()
+        {
+            AreEqual("-----", "-".Repeat(5));
+        }
+
+        [TestMethod]
+        public void TestRepeatTwoRepetitions()
+        {
+            AreEqual("--", "-".Repeat(2));
+        }
+
+        [TestMethod]
+        public void TestRepeatMultipleCharacters()
+        {
+            AreEqual("TestTestTest", "Test".Repeat(3));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestRepeatRepetitionsLessThan2ThrowsException()
+        {
+            "-".Repeat(1);
+        }
+
+        [TestMethod]
+        public void TestRepeatNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.Repeat(3));
+        }
+
+        [TestMethod]
+        public void TestRepeatEmptyReturnsEmpty()
+        {
+            AreEqual("", "".Repeat(3));
+        }
+
+        [TestMethod]
+        public void TestRepeatWhiteSpaceReturnsWhiteSpaces()
+        {
+            AreEqual("   ", " ".Repeat(3));
         }
         #endregion
     }

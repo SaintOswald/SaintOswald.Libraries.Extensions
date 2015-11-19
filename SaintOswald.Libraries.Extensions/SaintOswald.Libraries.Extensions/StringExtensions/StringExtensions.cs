@@ -12,6 +12,7 @@
  ***********************************************************************************/
 
 using System;
+using System.Text;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -47,6 +48,8 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// </returns>
         public static string TrimEndWhiteSpaceAndPunctuation(this string str)
         {
+            if (str.IsNullOrEmpty()) { return str; }
+
             return Regex.Replace(str, @"[\W_]+$", "");
         }
 
@@ -59,6 +62,8 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// </returns>
         public static string TrimStartWhiteSpaceAndPunctuation(this string str)
         {
+            if (str.IsNullOrEmpty()) { return str; }
+
             return Regex.Replace(str, @"^[\W_]+", "");
         }
 
@@ -81,7 +86,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         {
             if (maximumLength < 3)
             {
-                throw new ArgumentException("Truncate maximum length cannot be less than 3", nameof(maximumLength));
+                throw new ArgumentException("Maximum length cannot be less than 3", nameof(maximumLength));
             }
 
             if (str.IsNullOrEmpty() || str.Length <= maximumLength) { return str; }
@@ -250,6 +255,36 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
             }
 
             return string.Join(" ", parts);
+        }
+
+        /// <summary>
+        /// /// Returns the specified string value repeated for the given number of repetitions
+        /// </summary>
+        /// <param name="str">The string value to repeat</param>
+        /// <param name="repetitions">
+        /// The number of repetitions to repeat the string for - must be at least 2
+        /// </param>
+        /// <returns>The specified string repeated for the given number of repetitions</returns>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when the specified repetitions is less than 2
+        /// </exception>
+        public static string Repeat(this string str, int repetitions)
+        {
+            if(repetitions < 2)
+            {
+                throw new ArgumentException("Repetitions cannot be less than 2", nameof(repetitions));
+            }
+
+            if (str.IsNullOrEmpty()) { return str; }
+
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = 1; i <= repetitions; i++)
+            {
+                builder.Append(str);
+            }
+
+            return builder.ToString();
         }
     }
 }
