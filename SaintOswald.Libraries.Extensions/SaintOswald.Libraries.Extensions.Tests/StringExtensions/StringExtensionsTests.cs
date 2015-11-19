@@ -438,7 +438,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             AreEqual("Test", "test".ToTitleCase());
         }
 
-        public void TestToTitleCaseSinglLetter()
+        public void TestToTitleCaseSingleLetter()
         {
             AreEqual("T", "t".ToTitleCase());
         }
@@ -478,6 +478,75 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         public void TestToTitleCaseValueWhiteSpaceReturnsWhiteSpace()
         {
             AreEqual("   ", "   ".ToTitleCase());
+        }
+        #endregion
+
+        #region ToTitleCaseFirstWord
+        [TestMethod]
+        public void ToTitleCaseFirstWord()
+        {
+            AreEqual("Test of to title case first word", "test of to title case first word".ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordSingleWord()
+        {
+            AreEqual("Test", "test".ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordSingleLetter()
+        {
+            AreEqual("T", "t".ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordAlreadyTitleCase()
+        {
+            AreEqual("Test of to title case first word", "Test of to title case first word".ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordAcronymNotModified()
+        {
+            AreEqual("HTML test", "HTML test".ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordWithLeadingWhiteSpace()
+        {
+            AreEqual("   Test of to title case first word", "   test of to title case first word".ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordWithTrailingWhiteSpace()
+        {
+            AreEqual("Test of to title case first word   ", "test of to title case first word   ".ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordWithLeadingAndTrailingWhiteSpace()
+        {
+            AreEqual("   Test of to title case first word   ", "   test of to title case first word   ".ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordValueNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordValueEmptyReturnsEmpty()
+        {
+            AreEqual("", "".ToTitleCaseFirstWord());
+        }
+
+        [TestMethod]
+        public void ToTitleCaseFirstWordValueWhiteSpaceReturnsWhiteSpace()
+        {
+            AreEqual("   ", "   ".ToTitleCaseFirstWord());
         }
         #endregion
     }

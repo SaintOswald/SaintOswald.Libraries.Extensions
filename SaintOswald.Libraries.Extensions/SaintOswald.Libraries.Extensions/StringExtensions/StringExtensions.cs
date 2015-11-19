@@ -226,5 +226,30 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         {
             return (str.IsNullOrEmpty() ? str : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str));
         }
+
+        /// <summary>
+        /// Converts the first word within the specified string to title case by capitalising the first
+        /// letter using the culture of the current thread.  Words entirely in uppercase are treated as
+        /// acronyms and not modified
+        /// </summary>
+        /// <param name="str">The string to convert the first word to title case for</param>
+        /// <returns>The specified string with the first word converted to title case</returns>
+        public static string ToTitleCaseFirstWord(this string str)
+        {
+            if (str.IsNullOrEmpty()) { return str; }
+
+            string[] parts = str.Split();
+
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if(!parts[i].IsNullOrWhiteSpace())
+                {
+                    parts[i] = parts[i].ToTitleCase();
+                    break;
+                }
+            }
+
+            return string.Join(" ", parts);
+        }
     }
 }
