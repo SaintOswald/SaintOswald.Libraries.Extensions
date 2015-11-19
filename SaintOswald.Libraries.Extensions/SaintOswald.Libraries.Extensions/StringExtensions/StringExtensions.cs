@@ -113,8 +113,8 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// The string to return everything before the first occurrence of the specified delimiter for
         /// </param>
         /// <param name="delimiter">The delimiter to return everything before</param>
-        /// <param name="culture">
-        /// The String Comparison culture to use (optional - defaults to StringComparison.Ordinal)
+        /// <param name="comparisonType">
+        /// The String Comparison Type to use (optional - defaults to StringComparison.Ordinal)
         /// </param>
         /// <returns>
         /// Returns everything before the first occurrence of the specified delimiter if it exists
@@ -123,7 +123,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// <exception cref="System.ArgumentException">
         /// Thrown when the specified delimiter is null or empty
         /// </exception>
-        public static string EverythingBeforeFirst(this string str, string delimiter, StringComparison culture = StringComparison.Ordinal)
+        public static string EverythingBeforeFirst(this string str, string delimiter, StringComparison comparisonType = StringComparison.Ordinal)
         {
             if (delimiter.IsNullOrEmpty())
             {
@@ -132,7 +132,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
 
             if (str.IsNullOrEmpty()) { return null; }
 
-            int position = str.IndexOf(delimiter, culture);
+            int position = str.IndexOf(delimiter, comparisonType);
             return (position <= 0) ? null : str.Substring(0, position);
         }
 
@@ -143,8 +143,8 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// The string to return everything after the last occurrence of the delimiter for
         /// </param>
         /// <param name="delimiter">The delimiter to return everything after</param>
-        /// <param name="culture">
-        /// The String Comparison culture to use (optional - defaults to StringComparison.Ordinal)
+        /// <param name="comparisonType">
+        /// The String Comparison Type to use (optional - defaults to StringComparison.Ordinal)
         /// </param>
         /// <returns>
         /// Returns everything after the last occurrence of the specified delimiter if it exists
@@ -153,7 +153,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// <exception cref="System.ArgumentException">
         /// Thrown when the specified delimiter is null or empty
         /// </exception>
-        public static string EverythingAfterLast(this string str, string delimiter, StringComparison culture = StringComparison.Ordinal)
+        public static string EverythingAfterLast(this string str, string delimiter, StringComparison comparisonType = StringComparison.Ordinal)
         {
             if (delimiter.IsNullOrEmpty())
             {
@@ -162,7 +162,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
 
             if (str.IsNullOrEmpty()) { return null; }
 
-            int position = str.LastIndexOf(delimiter, culture);
+            int position = str.LastIndexOf(delimiter, comparisonType);
             return (position == -1 || position == str.Length - 1) ? null : str.Substring(position + delimiter.Length);
         }
     }

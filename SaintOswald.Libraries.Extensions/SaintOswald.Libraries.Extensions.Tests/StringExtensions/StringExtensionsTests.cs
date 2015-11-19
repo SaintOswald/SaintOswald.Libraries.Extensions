@@ -237,7 +237,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         }
 
         [TestMethod]
-        public void TestEverythingBeforeFirstSpecifyCulture()
+        public void TestEverythingBeforeFirstSpecifyStringComparison()
         {
             IsNull("test@example.com".EverythingBeforeFirst("@E"));
             AreEqual("test", "test@example.com".EverythingBeforeFirst("@E", StringComparison.CurrentCultureIgnoreCase));
@@ -303,7 +303,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         }
 
         [TestMethod]
-        public void TestEverythingAfterLastSpecifyCulture()
+        public void TestEverythingAfterLastSpecifyStringComparison()
         {
             IsNull("test@example.com".EverythingAfterLast("@E"));
             AreEqual("xample.com", "test@example.com".EverythingAfterLast("@E", StringComparison.CurrentCultureIgnoreCase));
