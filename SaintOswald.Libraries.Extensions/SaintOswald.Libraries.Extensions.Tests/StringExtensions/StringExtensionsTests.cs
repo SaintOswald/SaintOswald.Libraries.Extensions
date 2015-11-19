@@ -336,5 +336,32 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             "test@example.com".EverythingAfterLast("");
         }
         #endregion
+
+        #region ValueOr
+        [TestMethod]
+        public void TestValueOr()
+        {
+            AreEqual("Test", "Test".ValueOr("Alternative"));
+        }
+
+        [TestMethod]
+        public void TestValueOrReturnsAlternativeWhenNull()
+        {
+            string s = null;
+            AreEqual("Alternative", s.ValueOr("Alternative"));
+        }
+
+        [TestMethod]
+        public void TestValueOrReturnsAlternativeWhenEmpty()
+        {
+            AreEqual("Alternative", "".ValueOr("Alternative"));
+        }
+
+        [TestMethod]
+        public void TestValueOrReturnsAlternativeWhenWhiteSpace()
+        {
+            AreEqual("Alternative", "   ".ValueOr("Alternative"));
+        }
+        #endregion
     }
 }

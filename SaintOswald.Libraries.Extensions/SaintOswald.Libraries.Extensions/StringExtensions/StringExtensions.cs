@@ -165,5 +165,22 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
             int position = str.LastIndexOf(delimiter, comparisonType);
             return (position == -1 || position == str.Length - 1) ? null : str.Substring(position + delimiter.Length);
         }
+
+        /// <summary>
+        /// Returns the string value or the specified alternative if the string value is null, empty
+        /// or white space
+        /// </summary>
+        /// <param name="str">The string to return either the value or the alternative for</param>
+        /// <param name="alternative">
+        /// The alternative value to return if the string value is null, empty or white space
+        /// </param>
+        /// <returns>
+        /// The string value or the specified alternative if the string value is null, empty
+        /// or white space
+        /// </returns>
+        public static string ValueOr(this string str, string alternative)
+        {
+            return (str.IsNullOrWhiteSpace()) ? alternative : str;
+        }
     }
 }
