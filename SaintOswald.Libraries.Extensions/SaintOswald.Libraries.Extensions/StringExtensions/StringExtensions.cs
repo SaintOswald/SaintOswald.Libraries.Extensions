@@ -114,7 +114,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// </param>
         /// <param name="delimiter">The delimiter to return everything before</param>
         /// <param name="culture">
-        /// The String Comparison culture to use (optional - defaults to StringComparison.CurrentCulture)
+        /// The String Comparison culture to use (optional - defaults to StringComparison.Ordinal)
         /// </param>
         /// <returns>
         /// Returns everything before the first occurrence of the specified delimiter if it exists
@@ -123,7 +123,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// <exception cref="System.ArgumentException">
         /// Thrown when the specified delimiter is null or empty
         /// </exception>
-        public static string EverythingBeforeFirst(this string str, string delimiter, StringComparison culture = StringComparison.CurrentCulture)
+        public static string EverythingBeforeFirst(this string str, string delimiter, StringComparison culture = StringComparison.Ordinal)
         {
             if (delimiter.IsNullOrEmpty())
             {
@@ -144,7 +144,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// </param>
         /// <param name="delimiter">The delimiter to return everything after</param>
         /// <param name="culture">
-        /// The String Comparison culture to use (optional - defaults to StringComparison.CurrentCulture)
+        /// The String Comparison culture to use (optional - defaults to StringComparison.Ordinal)
         /// </param>
         /// <returns>
         /// Returns everything after the last occurrence of the specified delimiter if it exists
@@ -153,7 +153,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// <exception cref="System.ArgumentException">
         /// Thrown when the specified delimiter is null or empty
         /// </exception>
-        public static string EverythingAfterLast(this string str, string delimiter, StringComparison culture = StringComparison.CurrentCulture)
+        public static string EverythingAfterLast(this string str, string delimiter, StringComparison culture = StringComparison.Ordinal)
         {
             if (delimiter.IsNullOrEmpty())
             {
