@@ -603,5 +603,64 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             AreEqual("   ", " ".Repeat(3));
         }
         #endregion
+
+        #region TryParseTo
+        [TestMethod]
+        public void TestTryParseTo()
+        {
+            AreEqual<int>(1, "1".TryParseTo<int>());
+            AreEqual<uint>(1, "1".TryParseTo<uint>());
+            AreEqual<Int16>(1, "1".TryParseTo<Int16>());
+            AreEqual<UInt16>(1, "1".TryParseTo<UInt16>());
+            AreEqual<Int32>(1, "1".TryParseTo<Int32>());
+            AreEqual<UInt32>(1, "1".TryParseTo<UInt32>());
+            AreEqual<Int64>(1, "1".TryParseTo<Int64>());
+            AreEqual<UInt64>(1, "1".TryParseTo<UInt64>());
+            AreEqual<short>(1, "1".TryParseTo<short>());
+            AreEqual<ushort>(1, "1".TryParseTo<ushort>());
+            AreEqual<long>(1, "1".TryParseTo<long>());
+            AreEqual<ulong>(1, "1".TryParseTo<ulong>());
+
+            AreEqual<float>(1.1f, "1.1".TryParseTo<float>());
+            AreEqual<double>(1.1, "1.1".TryParseTo<double>());
+            AreEqual<decimal>(1.1M, "1.1".TryParseTo<decimal>());
+        }
+
+        [TestMethod]
+        public void TestTryParseToNegativeValues()
+        {
+            AreEqual<int>(-1, "-1".TryParseTo<int>());
+            AreEqual<Int16>(-1, "-1".TryParseTo<Int16>());
+            AreEqual<Int32>(-1, "-1".TryParseTo<Int32>());
+            AreEqual<Int64>(-1, "-1".TryParseTo<Int64>());
+            AreEqual<short>(-1, "-1".TryParseTo<short>());
+            AreEqual<long>(-1, "-1".TryParseTo<long>());
+
+            AreEqual<float>(-1.1f, "-1.1".TryParseTo<float>());
+            AreEqual<double>(-1.1, "-1.1".TryParseTo<double>());
+            AreEqual<decimal>(-1.1M, "-1.1".TryParseTo<decimal>());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestTryParseToParsingNotPossibleThrowsException()
+        {
+            "Test".TryParseTo<int>();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestTryParseToParsingNotPossibleAsValueTooLargeForTypeThrowsException()
+        {
+            "32768".TryParseTo<Int16>();  // Int16 maximum value is 32767
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestTryParseToParsingNotPossibleAsValueIsNegativeAndTypeIsUnsignedThrowsException()
+        {
+            "-1".TryParseTo<uint>();
+        }
+        #endregion
     }
 }

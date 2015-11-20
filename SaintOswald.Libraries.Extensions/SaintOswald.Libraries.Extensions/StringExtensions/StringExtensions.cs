@@ -14,6 +14,7 @@
 using System;
 using System.Text;
 using System.Globalization;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 
 namespace SaintOswald.Libraries.Extensions.StringExtensions
@@ -285,6 +286,30 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
             }
 
             return builder.ToString();
+        }
+
+        /// <summary>
+        /// Attempts to parse the specified string value to the given type
+        /// </summary>
+        /// <typeparam name="T">The type to attempt to parse the string value to</typeparam>
+        /// <param name="str">The string value to attempt to parse to the specified type</param>
+        /// <returns>The string value parsed to the specified type</returns>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when the specified string value cannot be parsed to the given type
+        /// </exception>
+        public static T TryParseTo<T>(this string str)
+        {
+            Type typeToParseTo = typeof(T);
+            TypeConverter typeConverter = TypeDescriptor.GetConverter(typeToParseTo);
+
+            if(typeConverter != null && typeConverter.IsValid(str))
+            {
+                return (T)typeConverter.ConvertFromString(str);
+            }
+            else
+            {
+                throw new ArgumentException($"String '{str}' cannot be converted to type '{typeToParseTo}'", nameof(str));
+            }
         }
     }
 }
