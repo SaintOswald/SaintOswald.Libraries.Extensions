@@ -578,6 +578,12 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         }
 
         [TestMethod]
+        public void TestRepeatWhiteSpace()
+        {
+            AreEqual("   ", " ".Repeat(3));
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void TestRepeatRepetitionsLessThan2ThrowsException()
         {

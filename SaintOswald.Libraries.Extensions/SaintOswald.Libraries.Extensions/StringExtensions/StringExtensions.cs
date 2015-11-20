@@ -278,14 +278,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
 
             if (str.IsNullOrEmpty()) { return str; }
 
-            StringBuilder builder = new StringBuilder();
-
-            for (int i = 1; i <= repetitions; i++)
-            {
-                builder.Append(str);
-            }
-
-            return builder.ToString();
+            return new StringBuilder().Insert(0, str, repetitions).ToString();
         }
 
         /// <summary>
