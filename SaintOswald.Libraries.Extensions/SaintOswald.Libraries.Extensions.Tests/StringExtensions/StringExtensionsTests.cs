@@ -662,5 +662,43 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             "-1".TryParseTo<uint>();
         }
         #endregion
+
+        #region RemoveDiacritics
+        [TestMethod]
+        public void TestRemoveDiacritics()
+        {
+            AreEqual("acdeeinorstuuyz", "áčďéěíňóřšťúůýž".RemoveDiacritics());  // Czech
+            AreEqual("aaeeeeiiouuuy", "àâéèêëïîôùûüÿ".RemoveDiacritics());      // French
+            AreEqual("aou", "äöü".RemoveDiacritics());                          // German
+            AreEqual("aenzz", "ąęńźż".RemoveDiacritics());                      // Polish
+            AreEqual("aaaaceeiooouu", "ãáàâçéêíõóôúü".RemoveDiacritics());      // Portuguese
+            AreEqual("aaeo", "äåéö".RemoveDiacritics());                        // Swedish
+        }
+
+        [TestMethod]
+        public void TestRemoveDiacriticsFromSentence()
+        {
+            AreEqual("Parlez-vous Francais?", "Parlez-vous Français?".RemoveDiacritics());
+        }
+
+        [TestMethod]
+        public void TestRemoveDiacriticsNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.RemoveDiacritics());
+        }
+
+        [TestMethod]
+        public void TestRemoveDiacriticsEmptyReturnsEmpty()
+        {
+            AreEqual("", "".RemoveDiacritics());
+        }
+
+        [TestMethod]
+        public void TestRemoveDiacriticsWhiteSpaceReturnsWhiteSpace()
+        {
+            AreEqual("   ", "   ".RemoveDiacritics());
+        }
+        #endregion
     }
 }

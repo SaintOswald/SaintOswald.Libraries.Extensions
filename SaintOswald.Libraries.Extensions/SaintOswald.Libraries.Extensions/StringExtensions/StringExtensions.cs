@@ -311,5 +311,29 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
                 throw new ArgumentException($"String '{str}' cannot be converted to type '{typeToParseTo}'", nameof(str));
             }
         }
+
+        /// <summary>
+        /// Attempts to remove diacritics from the specified string.  For example, an accented French
+        /// character like "á" should be replaced with "a"
+        /// </summary>
+        /// <param name="str">The string to attempt to remove diacritics from</param>
+        /// <returns>The string with diacritics removed</returns>
+        /// <seealso cref="http://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net/249126#249126"/>
+        public static string RemoveDiacritics(this string str)
+        {
+            if (str.IsNullOrWhiteSpace()) { return str; }
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (char character in str.Normalize(NormalizationForm.FormD))
+            {
+                if(CharUnicodeInfo.GetUnicodeCategory(character) != UnicodeCategory.NonSpacingMark)
+                {
+                    builder.Append(character);
+                }
+            }
+
+            return builder.ToString().Normalize(NormalizationForm.FormC);
+        }
     }
 }
