@@ -689,5 +689,89 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
             AreEqual("   ", "   ".RemoveDiacritics());
         }
         #endregion
+
+        #region ToSlug
+        [TestMethod]
+        public void TestToSlug()
+        {
+            AreEqual("test-to-slug", "Test to Slug".ToSlug());
+        }
+
+        [TestMethod]
+        public void TestToSlugRemovesDiacritics()
+        {
+            AreEqual("test-to-slug", "Tést to Slug".ToSlug());
+        }
+
+        [TestMethod]
+        public void TestToSlugConvertsToLowercase()
+        {
+            AreEqual("test-to-slug", "TEST TO SLUG".ToSlug());
+        }
+
+        [TestMethod]
+        public void TestToSlugCollapsesWhiteSpace()
+        {
+            AreEqual("test-to-slug", "Test\tto\r\nSlug".ToSlug());
+        }
+
+        [TestMethod]
+        public void TestToSlugReplacesSpacesWithHyphens()
+        {
+            AreEqual("test-to-slug", "Test to Slug".ToSlug());
+        }
+
+        [TestMethod]
+        public void TestToSlugOnlyAllowsNonAlphaNumericCharactersOrHyphens()
+        {
+            AreEqual("test-to-slug", "/Test @to-Slug".ToSlug());
+        }
+
+        [TestMethod]
+        public void TestToSlugTrims()
+        {
+            AreEqual("test-to-slug", "  Test to Slug  ".ToSlug());
+        }
+
+        [TestMethod]
+        public void TestToSlugRemovesConsecutiveHyphens()
+        {
+            AreEqual("test-to-slug", "Test- -to- -Slug".ToSlug());
+        }
+
+        [TestMethod]
+        public void TestToSlugRemovesLeadingHyphens()
+        {
+            AreEqual("test-to-slug", "-Test to Slug".ToSlug());
+        }
+
+        [TestMethod]
+        public void TestToSlugRemovesTrailingHyphens()
+        {
+            AreEqual("test-to-slug", "Test to Slug-".ToSlug());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestToSlugStringNullThrowsException()
+        {
+            string s = null;
+            s.ToSlug();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestToSlugStringEmptyThrowsException()
+        {
+            "".ToSlug();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestToSlugStringWhiteSpaceThrowsException()
+        {
+            "   ".ToSlug();
+        }
+        #endregion
     }
 }

@@ -330,5 +330,36 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
 
             return builder.ToString().Normalize(NormalizationForm.FormC);
         }
+
+        /// <summary>
+        /// Converts the specified string to a slug by removing diacritics, converting to lowercase,
+        /// collapsing white space, replacing spaces with hyphens (-), stripping characters that are
+        /// not alpha-numeric or hyphens, removing consecutive hyphens and trimming leading and trailing
+        /// hyphens and spaces
+        /// </summary>
+        /// <param name="str">The string to convert to a slug</param>
+        /// <returns>
+        /// The string converted to a slug
+        /// </returns>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when the specified string is null, empty or white space
+        /// </exception>
+        public static string ToSlug(this string str)
+        {
+            if (str.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentException("String cannot be converted to a slug as it is null, empty or white space", nameof(str));
+            }
+
+            string slug = Regex.Replace(str.RemoveDiacritics()
+                                           .ToLower()
+                                           .CollapseWhiteSpace()
+                                           .Replace(" ", "-"),
+                                           @"[^a-z0-9\-]", "");  // Ensure only alpha-numeric characters and hyphens
+
+            return Regex.Replace(slug, @"\-{2,}", "-")  // Replace consecutive hyphens
+                                           .Trim('-')
+                                           .Trim();
+        }
     }
 }
