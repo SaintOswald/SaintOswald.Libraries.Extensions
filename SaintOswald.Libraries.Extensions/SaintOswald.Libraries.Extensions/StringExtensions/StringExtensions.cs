@@ -301,10 +301,9 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
             {
                 return (T)typeConverter.ConvertFromString(str);
             }
-            else
-            {
-                throw new ArgumentException($"String '{str}' cannot be converted to type '{typeToParseTo}'", nameof(str));
-            }
+
+            // If we got here we are unable to convert to the requested type
+            throw new ArgumentException($"String '{str}' cannot be converted to type '{typeToParseTo}'", nameof(str));
         }
 
         /// <summary>
