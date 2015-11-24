@@ -227,10 +227,37 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// acronyms and not modified
         /// </summary>
         /// <param name="str">The string to convert to title case</param>
+        /// <param name="cultureInfo">
+        /// The culture info to use when converting the string to title case (optional - defaults
+        /// to CultureInfo.CurrentCulture)
+        /// </param>
         /// <returns>The specified string converted to title case</returns>
-        public static string ToTitleCase(this string str)
+        public static string ToTitleCase(this string str, CultureInfo cultureInfo = null)
         {
-            return (str.IsNullOrEmpty() ? str : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str));
+            return (str.IsNullOrEmpty() ? str : (cultureInfo ?? CultureInfo.CurrentCulture).TextInfo.ToTitleCase(str));
+        }
+
+        /// <summary>
+        /// Converts the first letter of the specified string to uppercase
+        /// </summary>
+        /// <param name="str">The string to convert the first letter to upper case for</param>
+        /// <param name="cultureInfo">
+        /// The culture info to use when converting the first letter to uppercase (optional - defaults
+        /// to CultureInfo.CurrentCulture)
+        /// </param>
+        /// <returns>The specified string with the first letter converted to uppercase</returns>
+        public static string ToUpperFirst(this string str, CultureInfo cultureInfo = null)
+        {
+            if (str.IsNullOrWhiteSpace()) { return str; }
+
+            char[] characters = str.ToCharArray();
+
+            if(!characters[0].ToString().IsNullOrWhiteSpace())
+            {
+                characters[0] = char.ToUpper(characters[0], cultureInfo ?? CultureInfo.CurrentCulture);
+            }
+
+            return new string(characters);
         }
 
         /// <summary>

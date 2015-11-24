@@ -12,6 +12,7 @@
  ***********************************************************************************/
 
 using System;
+using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using SaintOswald.Libraries.Extensions.StringExtensions;
@@ -470,6 +471,12 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         }
 
         [TestMethod]
+        public void TestToTitleCaseSpecifyCulture()
+        {
+            AreEqual("İngilis Dili Danışmaq Edirsiniz?", "ingilis dili danışmaq edirsiniz?".ToTitleCase(new CultureInfo("az-Latn-AZ")));  // Azerbaijani
+        }
+
+        [TestMethod]
         public void TestToTitleCaseValueNullReturnsNull()
         {
             string s = null;
@@ -486,6 +493,51 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         public void TestToTitleCaseValueWhiteSpaceReturnsWhiteSpace()
         {
             AreEqual("   ", "   ".ToTitleCase());
+        }
+        #endregion
+
+        #region ToUpperFirst
+        [TestMethod]
+        public void TestToUpperFirst()
+        {
+            AreEqual("Test", "test".ToUpperFirst());
+        }
+
+        [TestMethod]
+        public void TestToUpperFirstSingleLetter()
+        {
+            AreEqual("T", "t".ToUpperFirst());
+        }
+
+        [TestMethod]
+        public void TestToUpperFirstFirstLetterAlreadyInUppercase()
+        {
+            AreEqual("Test", "Test".ToUpperFirst());
+        }
+
+        [TestMethod]
+        public void TestToUpperSpecifyCulture()
+        {
+            AreEqual("İngilis", "ingilis".ToUpperFirst(new CultureInfo("az-Latn-AZ")));  // Azerbaijani
+        }
+
+        [TestMethod]
+        public void TestToUpperFirstNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.ToUpperFirst());
+        }
+
+        [TestMethod]
+        public void TestToUpperFirstEmptyReturnsEmpty()
+        {
+            AreEqual("", "".ToUpperFirst());
+        }
+
+        [TestMethod]
+        public void TestToUpperFirstWhiteSpaceReturnsWhiteSpace()
+        {
+            AreEqual("   ", "   ".ToUpperFirst());
         }
         #endregion
 
