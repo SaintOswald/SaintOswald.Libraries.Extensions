@@ -7,7 +7,7 @@
  ***********************************************************************************
  *
  * LICENSED UNDER THE MIT LICENSE
- * SEE LICENSE.TXT IN THE PROJECT ROOT FOR LICENSE INFORMATION
+ * SEE LICENSE FILE IN THE PROJECT ROOT FOR LICENSE INFORMATION
  *
  ***********************************************************************************/
 
