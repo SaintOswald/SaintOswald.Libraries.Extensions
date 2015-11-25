@@ -2,6 +2,12 @@
 
 A collection of useful, reusable Extension Methods for C#
 
+## Installation
+
+Install via NuGet Package Manager Console:
+
+`PM> Install-Package SaintOswald.Libraries.Extensions`
+
 ## Usage
 
 Include the relevant Extension Methods you wish to use, such as:

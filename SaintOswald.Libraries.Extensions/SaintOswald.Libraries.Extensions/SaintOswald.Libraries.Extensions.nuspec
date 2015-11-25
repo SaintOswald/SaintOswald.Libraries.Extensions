@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://raw.githubusercontent.com/SaintOswald/SaintOswald.Libraries.Extensions/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/SaintOswald/SaintOswald.Libraries.Extensions</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>See: https://github.com/SaintOswald/SaintOswald.Libraries.Extensions/releases</releaseNotes>
+    <copyright>Copyright © Saint Oswald 2015</copyright>
+    <tags>SaintOswald Libraries Extensions C#</tags>
+  </metadata>
+</package>
