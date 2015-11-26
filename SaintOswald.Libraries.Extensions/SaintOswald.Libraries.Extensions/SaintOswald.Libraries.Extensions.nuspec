@@ -14,4 +14,7 @@
     <copyright>Copyright © Saint Oswald 2015</copyright>
     <tags>SaintOswald Libraries Extensions C#</tags>
   </metadata>
+  <files>
+    <file src="bin\Release\LICENSE" target="lib\net46\LICENSE" /> 
+</files>
 </package>

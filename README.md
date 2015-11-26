@@ -21,6 +21,10 @@ string title = "This is my title";
 string slug = title.ToSlug();  // this-is-my-title
 ```
 
+## Documentation
+
+Documentation is available in the project [Wiki](https://github.com/SaintOswald/SaintOswald.Libraries.Extensions/wiki)
+
 ## Compatibility
 
 Due to the use of new C# 6.0 features .NET Framework 4.6 is required

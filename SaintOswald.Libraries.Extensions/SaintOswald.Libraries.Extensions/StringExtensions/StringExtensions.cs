@@ -312,7 +312,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// </summary>
         /// <param name="str">The string to attempt to remove diacritics from</param>
         /// <returns>The string with diacritics removed</returns>
-        /// <seealso cref="http://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net/249126#249126"/>
+        /// <seealso cref="!:http://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net/249126#249126"/>
         public static string RemoveDiacritics(this string str)
         {
             if (str.IsNullOrWhiteSpace()) { return str; }
