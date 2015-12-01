@@ -51,7 +51,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         {
             if (str.IsNullOrEmpty()) { return str; }
 
-            return Regex.Replace(str, @"[\W_]+$", "");
+            return str.Replace(new Regex(@"[\W_]+$"), "");
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         {
             if (str.IsNullOrEmpty()) { return str; }
 
-            return Regex.Replace(str, @"^[\W_]+", "");
+            return str.Replace(new Regex(@"^[\W_]+"), "");
         }
 
         /// <summary>
@@ -106,11 +106,9 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         {
             if (str.IsNullOrEmpty()) { return str; }
 
-            // Replace all non-space white space characters with a single space
-            string normalised = Regex.Replace(str, @"[^\S ]", " ");
-
-            // Remove consecutive spaces
-            return Regex.Replace(normalised, " {2,}", " ").Trim();
+            return str.Replace(new Regex(@"[^\S ]"), " ")  // Replace all non-space white space characters with a single space
+                      .Replace(new Regex(" {2,}"), " ")    // Remove consecutive spaces
+                      .Trim();
         }
 
         /// <summary>
@@ -350,15 +348,14 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
                 throw new ArgumentException("String cannot be converted to a slug as it is null, empty or white space", nameof(str));
             }
 
-            string slug = Regex.Replace(str.RemoveDiacritics()
-                                           .ToLower()
-                                           .CollapseWhiteSpace()
-                                           .Replace(" ", "-"),
-                                           @"[^a-z0-9\-]", "");  // Ensure only alpha-numeric characters and hyphens
-
-            return Regex.Replace(slug, @"\-{2,}", "-")  // Replace consecutive hyphens
-                                           .Trim('-')
-                                           .Trim();
+            return str.RemoveDiacritics()
+                      .ToLower()
+                      .CollapseWhiteSpace()
+                      .Replace(" ", "-")
+                      .Replace(new Regex(@"[^a-z0-9\-]"), "")  // Ensure only alpha-numeric characters and hyphens
+                      .Replace(new Regex(@"\-{2,}"), "-")      // Replace consecutive hyphens
+                      .Trim('-')
+                      .Trim();
         }
 
         /// <summary>
@@ -373,6 +370,9 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         /// The specified string with values matched by the given regular expression replaced with the
         /// replacement value
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when the specified replacement is null
+        /// </exception>
         public static string Replace(this string str, Regex regex, string replacement)
         {
             if(replacement == null)
