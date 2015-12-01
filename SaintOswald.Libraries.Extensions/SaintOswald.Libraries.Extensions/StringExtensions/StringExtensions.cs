@@ -259,7 +259,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         }
 
         /// <summary>
-        /// /// Returns the specified string value repeated for the given number of repetitions
+        /// Returns the specified string value repeated for the given number of repetitions
         /// </summary>
         /// <param name="str">The string value to repeat</param>
         /// <param name="repetitions">
