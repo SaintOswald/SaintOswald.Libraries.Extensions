@@ -13,6 +13,7 @@
 
 using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using SaintOswald.Libraries.Extensions.StringExtensions;
@@ -771,6 +772,34 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         public void TestToSlugStringWhiteSpaceThrowsException()
         {
             "   ".ToSlug();
+        }
+        #endregion
+
+        #region Replace
+        [TestMethod]
+        public void TestReplace()
+        {
+            AreEqual("123TestABC", "123Test123".Replace(new Regex(@"\d{3}$"), "ABC"));
+        }
+
+        [TestMethod]
+        public void TestReplaceMultipleMatches()
+        {
+            AreEqual("ABCTestABC", "123Test123".Replace(new Regex(@"\d{3}"), "ABC"));
+        }
+
+        [TestMethod]
+        public void TestReplaceWithOptions()
+        {
+            AreEqual("Tes-", "Test".Replace(new Regex("t"), "-"));
+            AreEqual("-es-", "Test".Replace(new Regex("t", RegexOptions.IgnoreCase), "-"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestReplaceReplacementNullThrowsException()
+        {
+            "Test".Replace(new Regex("^[a-zA-Z]+$"), null);
         }
         #endregion
     }

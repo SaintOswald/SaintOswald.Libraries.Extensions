@@ -360,5 +360,27 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
                                            .Trim('-')
                                            .Trim();
         }
+
+        /// <summary>
+        /// Replaces all values matched by the specified regular expression with the given replacement
+        /// </summary>
+        /// <param name="str">The string to replace matched values for</param>
+        /// <param name="regex">The regular expression to match the specified string against</param>
+        /// <param name="replacement">
+        /// The string to replace values matched by the specified regular expression with
+        /// </param>
+        /// <returns>
+        /// The specified string with values matched by the given regular expression replaced with the
+        /// replacement value
+        /// </returns>
+        public static string Replace(this string str, Regex regex, string replacement)
+        {
+            if(replacement == null)
+            {
+                throw new ArgumentNullException(nameof(replacement), "Replacement cannot be null");
+            }
+
+            return regex.Replace(str, replacement);
+        }
     }
 }
