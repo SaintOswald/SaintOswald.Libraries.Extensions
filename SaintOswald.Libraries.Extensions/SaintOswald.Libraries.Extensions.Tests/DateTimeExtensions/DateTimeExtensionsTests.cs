@@ -125,7 +125,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
 
         #region IsWeekend
         [TestMethod]
-        public void IsWeekend()
+        public void TestIsWeekend()
         {
             IsTrue(new DateTime(2016, 1, 2).IsWeekend());   // Saturday
             IsTrue(new DateTime(2016, 1, 3).IsWeekend());   // Sunday
@@ -135,7 +135,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
 
         #region IsWeekday
         [TestMethod]
-        public void IsWeekday()
+        public void TestIsWeekday()
         {
             IsTrue(new DateTime(2016, 1, 4).IsWeekday());   // Monday
             IsFalse(new DateTime(2016, 1, 3).IsWeekday());  // Sunday
@@ -145,19 +145,33 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
 
         #region IsToday
         [TestMethod]
-        public void IsToday()
+        public void TestIsToday()
         {
             IsTrue(DateTime.Now.IsToday());
-            IsFalse(new DateTime(2016, 1, 3).IsToday());
+            IsFalse(DateTime.Now.AddDays(-1).IsToday());
+            IsFalse(DateTime.Now.AddDays(1).IsToday());
         }
         #endregion
 
         #region IsYesterday
         [TestMethod]
-        public void IsYesterday()
+        public void TestIsYesterday()
         {
             IsTrue(DateTime.Now.AddDays(-1).IsYesterday());
-            IsFalse(new DateTime(2016, 1, 4).IsYesterday());
+            IsFalse(DateTime.Now.IsYesterday());
+            IsFalse(DateTime.Now.AddDays(-2).IsYesterday());
+            IsFalse(DateTime.Now.AddDays(1).IsYesterday());
+        }
+        #endregion
+
+        #region IsTomorrow
+        [TestMethod]
+        public void TestIsTomorrow()
+        {
+            IsTrue(DateTime.Now.AddDays(1).IsTomorrow());
+            IsFalse(DateTime.Now.IsTomorrow());
+            IsFalse(DateTime.Now.AddDays(-1).IsTomorrow());
+            IsFalse(DateTime.Now.AddDays(2).IsTomorrow());
         }
         #endregion
     }

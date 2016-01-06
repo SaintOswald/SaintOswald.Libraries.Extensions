@@ -119,5 +119,14 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// True if the specified DateTime value is yesterday's date, otherwise returns false
         /// </returns>
         public static bool IsYesterday(this DateTime dateTime) => (dateTime.Date == DateTime.Today.AddDays(-1));
+
+        /// <summary>
+        /// Checks if the specified DateTime value is tomorrow's date
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to check</param>
+        /// <returns>
+        /// True if the specified DateTime value is tomorrow's date, otherwise returns false
+        /// </returns>
+        public static bool IsTomorrow(this DateTime dateTime) => (dateTime.Date == DateTime.Today.AddDays(1));
     }
 }
