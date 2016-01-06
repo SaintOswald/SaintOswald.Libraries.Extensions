@@ -91,5 +91,15 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// True if the specified DateTime value is a weekend, otherwise returns false
         /// </returns>
         public static bool IsWeekend(this DateTime dateTime) => (dateTime.DayOfWeek == DayOfWeek.Saturday || dateTime.DayOfWeek == DayOfWeek.Sunday);
+
+        /// <summary>
+        /// Checks if the specified DateTime value is a weekday (i.e. not a Saturday or Sunday).  Note: Method is not
+        /// culture aware and only defines a weekday as any day that is not a Saturday or Sunday
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to check</param>
+        /// <returns>
+        /// True if the specified DateTime value is a weekday, otherwise returns false
+        /// </returns>
+        public static bool IsWeekday(this DateTime dateTime) => (!dateTime.IsWeekend());
     }
 }
