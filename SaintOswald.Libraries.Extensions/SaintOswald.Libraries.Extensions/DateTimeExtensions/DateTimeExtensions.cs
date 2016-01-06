@@ -101,5 +101,14 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// True if the specified DateTime value is a weekday, otherwise returns false
         /// </returns>
         public static bool IsWeekday(this DateTime dateTime) => (!dateTime.IsWeekend());
+
+        /// <summary>
+        /// Checks if the specified DateTime value is today's date
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to check</param>
+        /// <returns>
+        /// True if the specified DateTime value is today's date, otherwise returns false
+        /// </returns>
+        public static bool IsToday(this DateTime dateTime) => (dateTime.Date == DateTime.Today);
     }
 }
