@@ -39,8 +39,31 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
         [TestMethod]
         public void TestIsEarlierThanComparisonIdenticalReturnsFalse()
         {
-            IsFalse(new DateTime(2016, 1, 6).IsEarlierThan(new DateTime(2015, 1, 6)));
+            IsFalse(new DateTime(2016, 1, 6).IsEarlierThan(new DateTime(2016, 1, 6)));
             IsFalse(new DateTime(2016, 1, 6, 21, 46, 16).IsEarlierThan(new DateTime(2016, 1, 6, 21, 46, 16)));
+        }
+        #endregion
+
+        #region IsLaterThan
+        [TestMethod]
+        public void TestIsLaterThan()
+        {
+            IsTrue(new DateTime(2016, 1, 6).IsLaterThan(new DateTime(2016, 1, 5)));
+            IsFalse(new DateTime(2016, 1, 5).IsLaterThan(new DateTime(2016, 1, 6)));
+        }
+
+        [TestMethod]
+        public void TestIsLaterThanWithTime()
+        {
+            IsTrue(new DateTime(2016, 1, 6, 22, 46, 16).IsLaterThan(new DateTime(2016, 1, 6, 21, 46, 16)));
+            IsFalse(new DateTime(2016, 1, 6, 21, 46, 16).IsLaterThan(new DateTime(2016, 1, 6, 22, 46, 16)));
+        }
+
+        [TestMethod]
+        public void TestIsLaterThanComparisonIdenticalReturnsFalse()
+        {
+            IsFalse(new DateTime(2016, 1, 6).IsLaterThan(new DateTime(2016, 1, 6)));
+            IsFalse(new DateTime(2016, 1, 6, 21, 46, 16).IsLaterThan(new DateTime(2016, 1, 6, 21, 46, 16)));
         }
         #endregion
     }
