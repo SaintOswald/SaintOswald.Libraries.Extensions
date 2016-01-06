@@ -2,7 +2,7 @@
  *
  * Saint Oswald: Libraries - Extensions
  *
- * Copyright (c) 2015, Saint Oswald
+ * Copyright (c) 2015 - 2016, Saint Oswald
  *
  ***********************************************************************************
  *

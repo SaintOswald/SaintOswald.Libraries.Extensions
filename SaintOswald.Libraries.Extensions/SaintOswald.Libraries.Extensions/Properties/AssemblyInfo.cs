@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Saint Oswald")]
 [assembly: AssemblyProduct("SaintOswald.Libraries.Extensions")]
-[assembly: AssemblyCopyright("Copyright © Saint Oswald 2015")]
+[assembly: AssemblyCopyright("Copyright © Saint Oswald 2015 - 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
