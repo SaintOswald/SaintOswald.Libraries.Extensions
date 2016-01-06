@@ -81,5 +81,15 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// True if the specified DateTime value is the same time as the given comparison, otherwise returns false
         /// </returns>
         public static bool IsSameTimeAs(this DateTime dateTime, DateTime comparison) => (dateTime.TimeOfDay == comparison.TimeOfDay);
+
+        /// <summary>
+        /// Checks if the specified DateTime value is a weekend (i.e. a Saturday or Sunday).  Note: Method is not
+        /// culture aware and defines a weekend day as a Saturday or Sunday only
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to check</param>
+        /// <returns>
+        /// True if the specified DateTime value is a weekend, otherwise returns false
+        /// </returns>
+        public static bool IsWeekend(this DateTime dateTime) => (dateTime.DayOfWeek == DayOfWeek.Saturday || dateTime.DayOfWeek == DayOfWeek.Sunday);
     }
 }

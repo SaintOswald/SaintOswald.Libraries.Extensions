@@ -122,5 +122,15 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             IsFalse(dateTime.IsSameTimeAs(new DateTime(2016, 1, 5, 21, 46, 16)));
         }
         #endregion
+
+        #region IsWeekend
+        [TestMethod]
+        public void IsWeekend()
+        {
+            IsTrue(new DateTime(2016, 1, 2).IsWeekend());   // Saturday
+            IsTrue(new DateTime(2016, 1, 3).IsWeekend());   // Sunday
+            IsFalse(new DateTime(2016, 1, 4).IsWeekend());  // Monday
+        }
+        #endregion
     }
 }
