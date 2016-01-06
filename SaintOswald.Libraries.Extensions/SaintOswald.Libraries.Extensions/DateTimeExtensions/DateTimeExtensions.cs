@@ -68,5 +68,18 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// True if the specified DateTime value is the same date as the given comparison, otherwise returns false
         /// </returns>
         public static bool IsSameDateAs(this DateTime dateTime, DateTime comparison) => (dateTime.Date == comparison.Date);
+
+        /// <summary>
+        /// Checks if the specified DateTime value is the same time (i.e. hour, minute and second) as the given
+        /// comparison date and time
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to check</param>
+        /// <param name="comparison">
+        /// The comparison to check if the specified DateTime value is the same time as
+        /// </param>
+        /// <returns>
+        /// True if the specified DateTime value is the same time as the given comparison, otherwise returns false
+        /// </returns>
+        public static bool IsSameTimeAs(this DateTime dateTime, DateTime comparison) => (dateTime.TimeOfDay == comparison.TimeOfDay);
     }
 }

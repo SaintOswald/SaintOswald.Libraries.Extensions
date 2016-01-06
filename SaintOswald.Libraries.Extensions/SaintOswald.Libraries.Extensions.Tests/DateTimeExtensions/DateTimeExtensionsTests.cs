@@ -99,5 +99,28 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             IsFalse(new DateTime(2016, 1, 6, 21, 46, 16).IsSameDateAs(new DateTime(2016, 1, 5, 21, 46, 16)));
         }
         #endregion
+
+        #region IsSameTimeAs
+        [TestMethod]
+        public void TestIsSameTimeAs()
+        {
+            IsTrue(new DateTime(2016, 1, 6, 21, 46, 16).IsSameTimeAs(new DateTime(2016, 1, 6, 21, 46, 16)));
+            IsTrue(new DateTime(2016, 1, 5, 21, 46, 16).IsSameTimeAs(new DateTime(2016, 1, 6, 21, 46, 16)));
+            IsFalse(new DateTime(2016, 1, 6, 21, 46, 16).IsSameTimeAs(new DateTime(2016, 1, 7, 22, 46, 16)));
+        }
+
+        [TestMethod]
+        public void TestIsSameTimeAsNoTimeSpecifiedUsesDefaultValue()
+        {
+            DateTime dateTime = new DateTime(2016, 1, 6);
+            AreEqual(0, dateTime.Hour);
+            AreEqual(0, dateTime.Minute);
+            AreEqual(0, dateTime.Second);
+
+            IsTrue(dateTime.IsSameTimeAs(new DateTime(2016, 1, 6)));
+            IsTrue(dateTime.IsSameTimeAs(new DateTime(2016, 1, 5)));
+            IsFalse(dateTime.IsSameTimeAs(new DateTime(2016, 1, 5, 21, 46, 16)));
+        }
+        #endregion
     }
 }
