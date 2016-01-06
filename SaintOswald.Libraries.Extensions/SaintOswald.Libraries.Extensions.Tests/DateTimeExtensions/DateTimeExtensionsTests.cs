@@ -174,5 +174,22 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             IsFalse(DateTime.Now.AddDays(2).IsTomorrow());
         }
         #endregion
+
+        #region IsInFuture
+        [TestMethod]
+        public void TestIsInFuture()
+        {
+            IsTrue(DateTime.Now.AddDays(1).IsInFuture());
+            IsTrue(DateTime.Now.AddSeconds(10).IsInFuture());
+            IsFalse(DateTime.Now.AddDays(-1).IsInFuture());
+            IsFalse(DateTime.Now.AddSeconds(-1).IsInFuture());
+        }
+
+        [TestMethod]
+        public void TestIsInFutureNowReturnsFalse()
+        {
+            IsFalse(DateTime.Now.IsInFuture());
+        }
+        #endregion
     }
 }
