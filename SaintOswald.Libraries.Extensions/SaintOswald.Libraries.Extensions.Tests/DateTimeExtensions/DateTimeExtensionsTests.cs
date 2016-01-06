@@ -151,5 +151,14 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             IsFalse(new DateTime(2016, 1, 3).IsToday());
         }
         #endregion
+
+        #region IsYesterday
+        [TestMethod]
+        public void IsYesterday()
+        {
+            IsTrue(DateTime.Now.AddDays(-1).IsYesterday());
+            IsFalse(new DateTime(2016, 1, 4).IsYesterday());
+        }
+        #endregion
     }
 }
