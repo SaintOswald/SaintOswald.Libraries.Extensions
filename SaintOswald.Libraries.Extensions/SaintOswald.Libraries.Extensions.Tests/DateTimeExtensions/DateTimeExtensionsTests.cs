@@ -66,5 +66,21 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             IsFalse(new DateTime(2016, 1, 6, 21, 46, 16).IsLaterThan(new DateTime(2016, 1, 6, 21, 46, 16)));
         }
         #endregion
+
+        #region IsSameAs
+        [TestMethod]
+        public void TestIsSameAs()
+        {
+            IsTrue(new DateTime(2016, 1, 6).IsSameAs(new DateTime(2016, 1, 6)));
+            IsFalse(new DateTime(2016, 1, 6).IsSameAs(new DateTime(2016, 1, 7)));
+        }
+
+        [TestMethod]
+        public void TestIsSameAsWithTime()
+        {
+            IsTrue(new DateTime(2016, 1, 6, 21, 46, 16).IsSameAs(new DateTime(2016, 1, 6, 21, 46, 16)));
+            IsFalse(new DateTime(2016, 1, 6, 21, 46, 16).IsSameAs(new DateTime(2016, 1, 6, 22, 46, 16)));
+        }
+        #endregion
     }
 }
