@@ -137,5 +137,14 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// True if the specified DateTime value is in the future, otherwise returns false
         /// </returns>
         public static bool IsInFuture(this DateTime dateTime) => (dateTime.IsLaterThan(DateTime.Now));
+
+        /// <summary>
+        /// Checks if the specified DateTime value is in the past
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to check</param>
+        /// <returns>
+        /// True if the specified DateTime value is in the past, otherwise returns false
+        /// </returns>
+        public static bool IsInPast(this DateTime dateTime) => (dateTime.IsEarlierThan(DateTime.Now));
     }
 }
