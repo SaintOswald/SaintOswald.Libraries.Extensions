@@ -212,5 +212,15 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
             => (new DateTime(dateTime.Year, dateTime.Month, dateTime.Day,
                              hour, minute, second, (millisecond ?? dateTime.Millisecond),
                              dateTime.Kind));
+
+        /// <summary>
+        /// Returns a new DateTime instance for the DateTime value with the time set to the start of the day
+        /// (i.e. 00:00:00:00)
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return the new DateTime for</param>
+        /// <returns>
+        /// A DateTime instance for the DateTime value with the time set to the start of the day
+        /// </returns>
+        public static DateTime ToStartOfDay(this DateTime dateTime) => (dateTime.ToTime(0, 0, 0, 0));
     }
 }
