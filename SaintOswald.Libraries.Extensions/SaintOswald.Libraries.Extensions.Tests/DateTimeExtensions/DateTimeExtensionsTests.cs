@@ -259,6 +259,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             AreEqual(new DateTime(2016, 1, 31), new DateTime(2016, 1, 7).ToLastDayOfMonth());
             AreEqual(new DateTime(2016, 4, 30), new DateTime(2016, 4, 7).ToLastDayOfMonth());
         }
+
         [TestMethod]
         public void TestToLastDayOfMonthLeapYear()
         {
@@ -276,6 +277,32 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
         public void TestToLastDayOfMonthKeepsDateTimeKind()
         {
             AreEqual(DateTimeKind.Utc, new DateTime(2016, 1, 7, 18, 47, 14, DateTimeKind.Utc).ToLastDayOfMonth().Kind);
+        }
+        #endregion
+
+        #region ToTime
+        [TestMethod]
+        public void TestToTime()
+        {
+            AreEqual(new DateTime(2016, 1, 7, 19, 20, 21), new DateTime(2016, 1, 7, 1, 2, 3).ToTime(19, 20, 21));
+        }
+
+        [TestMethod]
+        public void TestToTimeSpecifyMillisecond()
+        {
+            AreEqual(new DateTime(2016, 1, 7, 19, 20, 21, 5), new DateTime(2016, 1, 7, 1, 2, 3, 1).ToTime(19, 20, 21, 5));
+        }
+
+        [TestMethod]
+        public void TestToTimeUnspecifiedMillisecondUsesDateTimeValue()
+        {
+            AreEqual(new DateTime(2016, 1, 7, 19, 20, 21, 1), new DateTime(2016, 1, 7, 1, 2, 3, 1).ToTime(19, 20, 21));
+        }
+
+        [TestMethod]
+        public void TestToTimeKeepsDateTimeKind()
+        {
+            AreEqual(DateTimeKind.Utc, new DateTime(2016, 1, 7, 1, 2, 3, DateTimeKind.Utc).ToTime(19, 20, 21).Kind);
         }
         #endregion
     }

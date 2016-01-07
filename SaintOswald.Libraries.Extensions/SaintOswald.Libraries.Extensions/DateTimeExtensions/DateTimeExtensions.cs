@@ -191,5 +191,26 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
             => (new DateTime(dateTime.Year, dateTime.Month, DateTime.DaysInMonth(dateTime.Year, dateTime.Month),
                              dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond,
                              dateTime.Kind));
+
+        /// <summary>
+        /// Returns a new DateTime instance for the DateTime value with the time set to the specified hour,
+        /// minute, second and (optionally) millisecond
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return the new DateTime for</param>
+        /// <param name="hour">The hour to set the DateTime value to</param>
+        /// <param name="minute">The minute to set the DateTime value to</param>
+        /// <param name="second">The second to set the DateTime value to</param>
+        /// <param name="millisecond">
+        /// The millisecond to set the DateTime value to (optional).  If unspecified the millisecond value
+        /// from the specified DateTime will be used
+        /// </param>
+        /// <returns>
+        /// A DateTime instance for the DateTime value with the time set to the specified hour, minute, second
+        /// and (optionally) millisecond
+        /// </returns>
+        public static DateTime ToTime(this DateTime dateTime, int hour, int minute, int second, int? millisecond = null)
+            => (new DateTime(dateTime.Year, dateTime.Month, dateTime.Day,
+                             hour, minute, second, (millisecond ?? dateTime.Millisecond),
+                             dateTime.Kind));
     }
 }
