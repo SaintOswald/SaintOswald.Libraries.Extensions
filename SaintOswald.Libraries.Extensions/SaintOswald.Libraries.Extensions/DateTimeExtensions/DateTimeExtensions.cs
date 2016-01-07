@@ -215,7 +215,7 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
 
         /// <summary>
         /// Returns a new DateTime instance for the DateTime value with the time set to the start of the day
-        /// (i.e. 00:00:00:00)
+        /// (i.e. 00:00:00:0000)
         /// </summary>
         /// <param name="dateTime">The DateTime value to return the new DateTime for</param>
         /// <returns>
@@ -225,12 +225,21 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
 
         /// <summary>
         /// Returns a new DateTime instance for the DateTime value with the time set to the end of the day
-        /// (i.e. 23:59:59:999)
+        /// (i.e. 23:59:59:0999)
         /// </summary>
         /// <param name="dateTime">The DateTime value to return the new DateTime for</param>
         /// <returns>
         /// A DateTime instance for the DateTime value with the time set to the end of the day
         /// </returns>
         public static DateTime ToEndOfDay(this DateTime dateTime) => (dateTime.ToTime(23, 59, 59, 999));
+
+        /// <summary>
+        /// Returns a new DateTime instance for the DateTime value with the time set to midday (i.e. 12:00:00:0000)
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return the new DateTime for</param>
+        /// <returns>
+        /// A DateTime instance for the DateTime value with the time set to the end of the day
+        /// </returns>
+        public static DateTime ToMidday(this DateTime dateTime) => (dateTime.ToTime(12, 0, 0, 0));
     }
 }

@@ -333,5 +333,19 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             AreEqual(DateTimeKind.Utc, new DateTime(2016, 1, 7, 19, 34, 56, DateTimeKind.Utc).ToEndOfDay().Kind);
         }
         #endregion
+
+        #region ToMidday
+        [TestMethod]
+        public void TestToMidday()
+        {
+            AreEqual(new DateTime(2016, 1, 7, 12, 0, 0, 0), new DateTime(2016, 1, 7, 19, 34, 56, 178).ToMidday());
+        }
+
+        [TestMethod]
+        public void TestToMiddayKeepsDateTimeKind()
+        {
+            AreEqual(DateTimeKind.Utc, new DateTime(2016, 1, 7, 19, 34, 56, DateTimeKind.Utc).ToMidday().Kind);
+        }
+        #endregion
     }
 }
