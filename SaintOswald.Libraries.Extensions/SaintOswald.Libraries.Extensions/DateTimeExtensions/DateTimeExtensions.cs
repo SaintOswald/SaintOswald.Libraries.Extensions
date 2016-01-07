@@ -178,5 +178,18 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
             => (new DateTime(dateTime.Year, dateTime.Month, 1,
                              dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond,
                              dateTime.Kind));
+
+        /// <summary>
+        /// Returns a new DateTime instance representing the last day of the month for the specified
+        /// DateTime value
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return the new DateTime for</param>
+        /// <returns>
+        /// A DateTime instance representing the last day of the month for the specified DateTime value
+        /// </returns>
+        public static DateTime ToLastDayOfMonth(this DateTime dateTime)
+            => (new DateTime(dateTime.Year, dateTime.Month, DateTime.DaysInMonth(dateTime.Year, dateTime.Month),
+                             dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond,
+                             dateTime.Kind));
     }
 }

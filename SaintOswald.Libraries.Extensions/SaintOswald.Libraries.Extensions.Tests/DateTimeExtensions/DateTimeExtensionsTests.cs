@@ -251,5 +251,32 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             AreEqual(DateTimeKind.Utc, new DateTime(2016, 1, 7, 18, 47, 14, DateTimeKind.Utc).ToFirstDayOfMonth().Kind);
         }
         #endregion
+
+        #region ToLastDayOfMonth
+        [TestMethod]
+        public void TestToLastDayOfMonth()
+        {
+            AreEqual(new DateTime(2016, 1, 31), new DateTime(2016, 1, 7).ToLastDayOfMonth());
+            AreEqual(new DateTime(2016, 4, 30), new DateTime(2016, 4, 7).ToLastDayOfMonth());
+        }
+        [TestMethod]
+        public void TestToLastDayOfMonthLeapYear()
+        {
+            AreEqual(new DateTime(2016, 2, 29), new DateTime(2016, 2, 7).ToLastDayOfMonth());
+            AreEqual(new DateTime(2015, 2, 28), new DateTime(2015, 2, 7).ToLastDayOfMonth());
+        }
+
+        [TestMethod]
+        public void TestToLastDayOfMonthWithTime()
+        {
+            AreEqual(new DateTime(2016, 1, 31, 18, 47, 14), new DateTime(2016, 1, 7, 18, 47, 14).ToLastDayOfMonth());
+        }
+
+        [TestMethod]
+        public void TestToLastDayOfMonthKeepsDateTimeKind()
+        {
+            AreEqual(DateTimeKind.Utc, new DateTime(2016, 1, 7, 18, 47, 14, DateTimeKind.Utc).ToLastDayOfMonth().Kind);
+        }
+        #endregion
     }
 }
