@@ -80,7 +80,8 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// <returns>
         /// True if the specified DateTime value is the same time as the given comparison, otherwise returns false
         /// </returns>
-        public static bool IsSameTimeAs(this DateTime dateTime, DateTime comparison) => (dateTime.TimeOfDay == comparison.TimeOfDay);
+        public static bool IsSameTimeAs(this DateTime dateTime, DateTime comparison)
+            => (dateTime.TimeOfDay == comparison.TimeOfDay);
 
         /// <summary>
         /// Checks if the specified DateTime value is a weekend (i.e. a Saturday or Sunday).  Note: Method is not
@@ -90,7 +91,8 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// <returns>
         /// True if the specified DateTime value is a weekend, otherwise returns false
         /// </returns>
-        public static bool IsWeekend(this DateTime dateTime) => (dateTime.DayOfWeek == DayOfWeek.Saturday || dateTime.DayOfWeek == DayOfWeek.Sunday);
+        public static bool IsWeekend(this DateTime dateTime)
+            => (dateTime.DayOfWeek == DayOfWeek.Saturday || dateTime.DayOfWeek == DayOfWeek.Sunday);
 
         /// <summary>
         /// Checks if the specified DateTime value is a weekday (i.e. not a Saturday or Sunday).  Note: Method is not
@@ -161,6 +163,20 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// True if the specified DateTime value is between the given start and end comparisons, otherwise
         /// returns false
         /// </returns>
-        public static bool IsBetween(this DateTime dateTime, DateTime startComparison, DateTime endComparison) => (dateTime >= startComparison && dateTime <= endComparison);
+        public static bool IsBetween(this DateTime dateTime, DateTime startComparison, DateTime endComparison)
+            => (dateTime >= startComparison && dateTime <= endComparison);
+
+        /// <summary>
+        /// Returns a new DateTime instance representing the first day of the month for the specified
+        /// DateTime value
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return the new DateTime for</param>
+        /// <returns>
+        /// A DateTime instance representing the first day of the month for the specified DateTime value
+        /// </returns>
+        public static DateTime ToFirstDayOfMonth(this DateTime dateTime)
+            => (new DateTime(dateTime.Year, dateTime.Month, 1,
+                             dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond,
+                             dateTime.Kind));
     }
 }

@@ -231,5 +231,25 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             IsTrue(new DateTime(2016, 1, 7, 18, 20, 12).IsBetween(new DateTime(2016, 1, 7, 18, 20, 12), new DateTime(2016, 1, 7, 18, 20, 12)));
         }
         #endregion
+
+        #region ToFirstDayOfMonth
+        [TestMethod]
+        public void TestToFirstDayOfMonth()
+        {
+            AreEqual(new DateTime(2016, 1, 1), new DateTime(2016, 1, 7).ToFirstDayOfMonth());
+        }
+
+        [TestMethod]
+        public void TestToFirstDayOfMonthWithTime()
+        {
+            AreEqual(new DateTime(2016, 1, 1, 18, 47, 14), new DateTime(2016, 1, 7, 18, 47, 14).ToFirstDayOfMonth());
+        }
+
+        [TestMethod]
+        public void TestToFirstDayOfMonthKeepsDateTimeKind()
+        {
+            AreEqual(DateTimeKind.Utc, new DateTime(2016, 1, 7, 18, 47, 14, DateTimeKind.Utc).ToFirstDayOfMonth().Kind);
+        }
+        #endregion
     }
 }
