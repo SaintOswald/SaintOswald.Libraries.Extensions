@@ -208,5 +208,28 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             IsFalse(DateTime.Now.IsInPast());
         }
         #endregion
+
+        #region IsBetween
+        [TestMethod]
+        public void TestIsBetween()
+        {
+            IsTrue(new DateTime(2016, 1, 7).IsBetween(new DateTime(2016, 1, 1), new DateTime(2016, 12, 31)));
+            IsFalse(new DateTime(2016, 1, 7).IsBetween(new DateTime(2015, 1, 1), new DateTime(2015, 12, 31)));
+        }
+
+        [TestMethod]
+        public void TestIsBetweenWithTime()
+        {
+            IsTrue(new DateTime(2016, 1, 7, 18, 20, 12).IsBetween(new DateTime(2016, 1, 7, 0, 0, 0), new DateTime(2016, 1, 7, 23, 59, 59)));
+            IsFalse(new DateTime(2016, 1, 7, 18, 20, 12).IsBetween(new DateTime(2016, 1, 7, 20, 0, 0), new DateTime(2016, 1, 7, 23, 59, 59)));
+        }
+
+        [TestMethod]
+        public void TestIsBetweenIdenticalReturnsTrue()
+        {
+            IsTrue(new DateTime(2016, 1, 7).IsBetween(new DateTime(2016, 1, 7), new DateTime(2016, 1, 7)));
+            IsTrue(new DateTime(2016, 1, 7, 18, 20, 12).IsBetween(new DateTime(2016, 1, 7, 18, 20, 12), new DateTime(2016, 1, 7, 18, 20, 12)));
+        }
+        #endregion
     }
 }

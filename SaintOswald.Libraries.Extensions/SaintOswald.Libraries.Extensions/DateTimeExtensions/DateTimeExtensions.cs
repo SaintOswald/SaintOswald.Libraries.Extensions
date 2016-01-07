@@ -146,5 +146,21 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// True if the specified DateTime value is in the past, otherwise returns false
         /// </returns>
         public static bool IsInPast(this DateTime dateTime) => (dateTime.IsEarlierThan(DateTime.Now));
+
+        /// <summary>
+        /// Checks if the specified DateTime value is between the start and end comparison date and times
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to check</param>
+        /// <param name="startComparison">
+        /// The start comparison to check if the specified DateTime value is between
+        /// </param>
+        /// <param name="endComparison">
+        /// The end comparison to check if the specified DateTime value is between
+        /// </param>
+        /// <returns>
+        /// True if the specified DateTime value is between the given start and end comparisons, otherwise
+        /// returns false
+        /// </returns>
+        public static bool IsBetween(this DateTime dateTime, DateTime startComparison, DateTime endComparison) => (dateTime >= startComparison && dateTime <= endComparison);
     }
 }
