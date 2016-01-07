@@ -222,5 +222,15 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// A DateTime instance for the DateTime value with the time set to the start of the day
         /// </returns>
         public static DateTime ToStartOfDay(this DateTime dateTime) => (dateTime.ToTime(0, 0, 0, 0));
+
+        /// <summary>
+        /// Returns a new DateTime instance for the DateTime value with the time set to the end of the day
+        /// (i.e. 23:59:59:999)
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return the new DateTime for</param>
+        /// <returns>
+        /// A DateTime instance for the DateTime value with the time set to the end of the day
+        /// </returns>
+        public static DateTime ToEndOfDay(this DateTime dateTime) => (dateTime.ToTime(23, 59, 59, 999));
     }
 }

@@ -319,5 +319,19 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             AreEqual(DateTimeKind.Utc, new DateTime(2016, 1, 7, 19, 34, 56, DateTimeKind.Utc).ToStartOfDay().Kind);
         }
         #endregion
+
+        #region ToEndOfDay
+        [TestMethod]
+        public void TestToEndOfDay()
+        {
+            AreEqual(new DateTime(2016, 1, 7, 23, 59, 59, 999), new DateTime(2016, 1, 7, 19, 34, 56, 178).ToEndOfDay());
+        }
+
+        [TestMethod]
+        public void TestToEndOfDayKeepsDateTimeKind()
+        {
+            AreEqual(DateTimeKind.Utc, new DateTime(2016, 1, 7, 19, 34, 56, DateTimeKind.Utc).ToEndOfDay().Kind);
+        }
+        #endregion
     }
 }
