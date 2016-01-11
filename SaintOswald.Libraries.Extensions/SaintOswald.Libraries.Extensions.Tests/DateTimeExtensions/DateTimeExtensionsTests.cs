@@ -435,5 +435,21 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             AreEqual(31, next.Day);
         }
         #endregion
+
+        #region ToCopyright
+        [TestMethod]
+        public void TestToCopyright()
+        {
+            AreEqual("2016", new DateTime(2016, 11, 1).ToCopyright(2016));
+            AreEqual("2015 - 2016", new DateTime(2016, 11, 1).ToCopyright(2015));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestToCopyrightCopyrightStartYearLaterThanDateTimeYearThrowsException()
+        {
+            AreEqual("2016", new DateTime(2016, 11, 1).ToCopyright(2017));
+        }
+        #endregion
     }
 }

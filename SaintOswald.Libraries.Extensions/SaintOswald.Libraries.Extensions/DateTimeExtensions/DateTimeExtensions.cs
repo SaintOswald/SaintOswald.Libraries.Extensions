@@ -300,5 +300,30 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
             return (endDayOfWeek >= startDayOfWeek) ? dateTime.AddDays((endDayOfWeek - 7) - startDayOfWeek)
                                                     : dateTime.AddDays(endDayOfWeek - startDayOfWeek);
         }
+
+        /// <summary>
+        /// Returns the copyright for the specified DateTime value based on the given copyright start year.
+        /// For example, a copyright start year of 2016 and a DateTime value of 2016 will return "2016".
+        /// For a copyright start year of 2015 and a DateTime value of 2016 "2015 - 2016" will be returned
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return the copyright for</param>
+        /// <param name="copyrightStartYear">The year in which copyright started</param>
+        /// <returns>
+        /// The copyright for the specified DateTime value
+        /// </returns>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when the specified copyright start year is later than the given DateTime year
+        /// </exception>
+        public static string ToCopyright(this DateTime dateTime, int copyrightStartYear)
+        {
+            if(copyrightStartYear > dateTime.Year)
+            {
+                throw new ArgumentException("Copyright start year cannot be later than the DateTime year",
+                                                nameof(copyrightStartYear));
+            }
+
+            return (copyrightStartYear == dateTime.Year) ? copyrightStartYear.ToString()
+                                                         : ($"{copyrightStartYear} - {dateTime.Year}");
+        }
     }
 }
