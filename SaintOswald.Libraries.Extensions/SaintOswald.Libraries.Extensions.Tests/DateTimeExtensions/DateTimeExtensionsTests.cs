@@ -232,6 +232,28 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
         }
         #endregion
 
+        #region IsAnniversaryOf
+        [TestMethod]
+        public void TestIsAnniversaryOf()
+        {
+            IsTrue(new DateTime(2016, 1, 11).IsAnniversaryOf(new DateTime(2015, 1, 11)));
+            IsTrue(new DateTime(2016, 1, 11).IsAnniversaryOf(new DateTime(2014, 1, 11)));
+            IsFalse(new DateTime(2016, 1, 12).IsAnniversaryOf(new DateTime(2015, 1, 11)));
+        }
+
+        [TestMethod]
+        public void TestIsAnniversaryOfComparisonSameDateReturnsFalse()
+        {
+            IsFalse(new DateTime(2016, 1, 11).IsAnniversaryOf(new DateTime(2016, 1, 11)));
+        }
+
+        [TestMethod]
+        public void TestIsAnniversaryOfComparisonLaterYearReturnsFalse()
+        {
+            IsFalse(new DateTime(2016, 1, 11).IsAnniversaryOf(new DateTime(2017, 1, 11)));
+        }
+        #endregion
+
         #region ToFirstDayOfMonth
         [TestMethod]
         public void TestToFirstDayOfMonth()

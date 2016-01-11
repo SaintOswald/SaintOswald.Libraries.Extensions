@@ -167,6 +167,23 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
             => (dateTime >= startComparison && dateTime <= endComparison);
 
         /// <summary>
+        /// Checks if the specified DateTime value is the anniversary (i.e. the same month and day but
+        /// at least one year later) of the comparison date and time
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to check</param>
+        /// <param name="comparison">
+        /// The comparison to check if the specified DateTime value is the anniversary of
+        /// </param>
+        /// <returns>
+        /// True if the specified DateTime value is the anniversary of the given comparison, otherwise
+        /// returns false
+        /// </returns>
+        public static bool IsAnniversaryOf(this DateTime dateTime, DateTime comparison)
+            => (dateTime.Year > comparison.Year
+                            && dateTime.Month == comparison.Month
+                            && dateTime.Day == comparison.Day);
+
+        /// <summary>
         /// Returns a new DateTime instance representing the first day of the month for the specified
         /// DateTime value
         /// </summary>
