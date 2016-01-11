@@ -380,5 +380,38 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             AreEqual(14, next.Day);
         }
         #endregion
+
+        #region ToPrevious
+        [TestMethod]
+        public void TestToPrevious()
+        {
+            DateTime next = new DateTime(2016, 1, 7).ToPrevious(DayOfWeek.Wednesday);
+
+            AreEqual(DayOfWeek.Wednesday, next.DayOfWeek);
+            AreEqual(6, next.Day);
+
+            next = next.ToPrevious(DayOfWeek.Monday);
+            AreEqual(DayOfWeek.Monday, next.DayOfWeek);
+            AreEqual(4, next.Day);
+        }
+
+        [TestMethod]
+        public void TestToPreviousWithTime()
+        {
+            DateTime next = new DateTime(2016, 1, 7, 19, 52, 34).ToPrevious(DayOfWeek.Wednesday);
+
+            AreEqual(DayOfWeek.Wednesday, next.DayOfWeek);
+            AreEqual(new DateTime(2016, 1, 6, 19, 52, 34), next);
+        }
+
+        [TestMethod]
+        public void TestToPreviousDayOfWeekIsSameReturnsPreviousOccurrence()
+        {
+            DateTime next = new DateTime(2016, 1, 7).ToPrevious(DayOfWeek.Thursday);
+
+            AreEqual(DayOfWeek.Thursday, next.DayOfWeek);
+            AreEqual(31, next.Day);
+        }
+        #endregion
     }
 }
