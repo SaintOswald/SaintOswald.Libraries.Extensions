@@ -241,5 +241,26 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// A DateTime instance for the DateTime value with the time set to the end of the day
         /// </returns>
         public static DateTime ToMidday(this DateTime dateTime) => (dateTime.ToTime(12, 0, 0, 0));
+
+        /// <summary>
+        /// Returns a new DateTime instance for the DateTime value with the day set to the next occurrence
+        /// of the specified day of week.  If the specified day of week day of week is the same as the
+        /// given day of week (e.g. Monday and Monday) then the day 7 days from the DateTime value is
+        /// returned
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return the new DateTime for</param>
+        /// <param name="dayOfWeek">The next day of week occurrence to set the DateTime to</param>
+        /// <returns>
+        /// A DateTime instance for the DateTime value with the day set to the next occurrence
+        /// of the specified day of week
+        /// </returns>
+        public static DateTime ToNext(this DateTime dateTime, DayOfWeek dayOfWeek)
+        {
+            int startDayOfWeek = (int)dateTime.DayOfWeek;
+            int endDayOfWeek = (int)dayOfWeek;
+
+            return (endDayOfWeek <= startDayOfWeek) ? dateTime.AddDays((endDayOfWeek + 7) - startDayOfWeek)
+                                                    : dateTime.AddDays(endDayOfWeek - startDayOfWeek);
+        }
     }
 }
