@@ -490,5 +490,23 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             AreEqual("2 years from now", DateTime.Now.AddDays(365 * 2).ToRelativeTime());
         }
         #endregion
+
+        #region ToSimpleFormat
+        [TestMethod]
+        public void TestToSimpleFormat()
+        {
+            DateTime dateTime = DateTime.Now;
+            AreEqual($"Today at {dateTime.ToShortTimeString()}", dateTime.ToSimpleFormat());
+
+            dateTime = DateTime.Now.AddDays(-1);
+            AreEqual("Yesterday at " + dateTime.ToShortTimeString(), dateTime.ToSimpleFormat());
+
+            dateTime = DateTime.Now.AddDays(-6);
+            AreEqual(dateTime.ToString("dddd") + " at " + dateTime.ToShortTimeString(), dateTime.ToSimpleFormat());
+
+            dateTime = DateTime.Now.AddDays(-7);
+            AreEqual(dateTime.ToShortDateString() + " at " + dateTime.ToShortTimeString(), dateTime.ToSimpleFormat());
+        }
+        #endregion
     }
 }

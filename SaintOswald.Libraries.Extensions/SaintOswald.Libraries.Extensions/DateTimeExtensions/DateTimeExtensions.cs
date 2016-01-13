@@ -372,5 +372,38 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
                                       .Value
                                       .Invoke(differenceMinutes) + suffix;
         }
+
+        /// <summary>
+        /// Returns a simple formatted representation of the specified DateTime value, such as
+        /// "Today at HH:mm" if the DateTime value is today's date, "Yesterday at HH:mm" if the DateTime value
+        /// is yesterday's date, "Wednesday at HH:mm" if the DateTime value day is up to 6 days ago and the day
+        /// is a Wednesday or "dd/MM/yyyy at HH:mm" if the DateTime was earlier than 6 days ago.  Note: Method
+        /// is not fully locale aware and only returns results in English language format even though dates and
+        /// times will be returned according to the current locale
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return a simple formatted representation of</param>
+        /// <returns>
+        /// The simple formatted representation of the specified DateTime value
+        /// </returns>
+        /// <seealso cref="!:http://stackoverflow.com/questions/11/how-can-relative-time-be-calculated-in-c/1141237#1141237"/>
+        public static string ToSimpleFormat(this DateTime dateTime)
+        {
+            if (dateTime.IsToday())
+            {
+                return $"Today at {dateTime.ToShortTimeString()}";
+            }
+            else if (dateTime.IsYesterday())
+            {
+                return $"Yesterday at {dateTime.ToShortTimeString()}";
+            }
+            else if (dateTime.IsLaterThan(DateTime.Today.AddDays(-6)))  // If it is within the last 6 days then return the name of the day
+            {
+                return $"{dateTime.ToString("dddd")} at {dateTime.ToShortTimeString()}";
+            }
+            else
+            {
+                return $"{dateTime.ToShortDateString()} at {dateTime.ToShortTimeString()}";
+            }
+        }
     }
 }
