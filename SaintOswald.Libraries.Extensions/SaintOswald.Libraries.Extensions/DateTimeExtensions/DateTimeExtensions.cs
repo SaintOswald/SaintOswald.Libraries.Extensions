@@ -385,7 +385,6 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// <returns>
         /// The simple formatted representation of the specified DateTime value
         /// </returns>
-        /// <seealso cref="!:http://stackoverflow.com/questions/11/how-can-relative-time-be-calculated-in-c/1141237#1141237"/>
         public static string ToSimpleFormat(this DateTime dateTime)
         {
             if (dateTime.IsToday())
