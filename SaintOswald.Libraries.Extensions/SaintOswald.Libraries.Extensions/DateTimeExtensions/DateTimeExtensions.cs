@@ -12,6 +12,8 @@
  ***********************************************************************************/
 
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
 {
@@ -20,6 +22,24 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
     /// </summary>
     public static class DateTimeExtensions
     {
+        /// <summary>
+        /// Holds a SortedList of relative time periods used for calculations
+        /// </summary>
+        static readonly SortedList<double, Func<double, string>> relativeTimePeriods = new SortedList<double, Func<double, string>>
+        {
+            [0.75] = (minutes) => "A few seconds",
+            [1.5] = (minutes) => "A minute",
+            [45] = (minutes) => $"{Math.Round(minutes)} minutes",
+            [90] = (minutes) => "An hour",
+            [(60 * 24)] = (minutes) => $"{Math.Round(Math.Abs(minutes / 60))} hours",
+            [(60 * 48)] = (minutes) => "A day",
+            [(60 * 24 * 30)] = (minutes) => $"{Math.Floor(Math.Abs(minutes / 1440))} days",
+            [(60 * 24 * 60)] = (minutes) => "A month",
+            [(60 * 24 * 365)] = (minutes) => $"{Math.Floor(Math.Abs(minutes / 43200))} months",
+            [(60 * 24 * 365 * 2)] = (minutes) => "A year",
+            [double.MaxValue] = (minutes) => $"{Math.Floor(Math.Abs(minutes / 525600))} years"
+        };
+
         /// <summary>
         /// Checks if the specified DateTime value is earlier than the given comparison date and time
         /// </summary>
@@ -324,6 +344,33 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
 
             return (copyrightStartYear == dateTime.Year) ? copyrightStartYear.ToString()
                                                          : ($"{copyrightStartYear} - {dateTime.Year}");
+        }
+
+        /// <summary>
+        /// Returns the relative time from now (such as "A few seconds ago" or "5 minutes from now") for the
+        /// specified DateTime value.  Note: Method is not locale aware and only returns results in English
+        /// language format
+        /// </summary>
+        /// <param name="dateTime">The DateTime value to return the relative time for</param>
+        /// <returns>
+        /// The relative time for the specified DateTime value
+        /// </returns>
+        /// <seealso cref="!:http://stackoverflow.com/questions/11/how-can-relative-time-be-calculated-in-c/1141237#1141237"/>
+        public static string ToRelativeTime(this DateTime dateTime)
+        {
+            double differenceMinutes = DateTime.Now.Subtract(dateTime).TotalMinutes;
+            string suffix = " ago";
+
+            // Are we dealing with a future time?
+            if(differenceMinutes < 0)
+            {
+                differenceMinutes = Math.Abs(differenceMinutes);
+                suffix = " from now";
+            }
+
+            return relativeTimePeriods.First(p => differenceMinutes < p.Key)
+                                      .Value
+                                      .Invoke(differenceMinutes) + suffix;
         }
     }
 }

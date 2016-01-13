@@ -451,5 +451,44 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
             AreEqual("2016", new DateTime(2016, 11, 1).ToCopyright(2017));
         }
         #endregion
+
+        #region ToRelativeTime
+        [TestMethod]
+        public void TestToRelativeTime()
+        {
+            AreEqual("A few seconds ago", DateTime.Now.AddSeconds(-1).ToRelativeTime());
+            AreEqual("A few seconds from now", DateTime.Now.AddSeconds(1).ToRelativeTime());
+
+            AreEqual("A minute ago", DateTime.Now.AddMinutes(-1).ToRelativeTime());
+            AreEqual("A minute from now", DateTime.Now.AddMinutes(1).ToRelativeTime());
+
+            AreEqual("2 minutes ago", DateTime.Now.AddMinutes(-2).ToRelativeTime());
+            AreEqual("2 minutes from now", DateTime.Now.AddMinutes(2).ToRelativeTime());
+
+            AreEqual("An hour ago", DateTime.Now.AddHours(-1).ToRelativeTime());
+            AreEqual("An hour from now", DateTime.Now.AddHours(1).ToRelativeTime());
+
+            AreEqual("2 hours ago", DateTime.Now.AddHours(-2).ToRelativeTime());
+            AreEqual("2 hours from now", DateTime.Now.AddHours(2).ToRelativeTime());
+
+            AreEqual("A day ago", DateTime.Now.AddDays(-1).ToRelativeTime());
+            AreEqual("A day from now", DateTime.Now.AddDays(1).ToRelativeTime());
+
+            AreEqual("2 days ago", DateTime.Now.AddDays(-2).ToRelativeTime());
+            AreEqual("2 days from now", DateTime.Now.AddDays(2).ToRelativeTime());
+
+            AreEqual("A month ago", DateTime.Now.AddDays(-30).ToRelativeTime());
+            AreEqual("A month from now", DateTime.Now.AddDays(30).ToRelativeTime());
+
+            AreEqual("2 months ago", DateTime.Now.AddDays(-60).ToRelativeTime());
+            AreEqual("2 months from now", DateTime.Now.AddDays(60).ToRelativeTime());
+
+            AreEqual("A year ago", DateTime.Now.AddDays(-365).ToRelativeTime());
+            AreEqual("A year from now", DateTime.Now.AddDays(365).ToRelativeTime());
+
+            AreEqual("2 years ago", DateTime.Now.AddDays(-365 * 2).ToRelativeTime());
+            AreEqual("2 years from now", DateTime.Now.AddDays(365 * 2).ToRelativeTime());
+        }
+        #endregion
     }
 }
