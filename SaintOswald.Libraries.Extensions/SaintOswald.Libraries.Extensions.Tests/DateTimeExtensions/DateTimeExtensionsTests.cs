@@ -407,32 +407,32 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
         [TestMethod]
         public void TestToPrevious()
         {
-            DateTime next = new DateTime(2016, 1, 7).ToPrevious(DayOfWeek.Wednesday);
+            DateTime previous = new DateTime(2016, 1, 7).ToPrevious(DayOfWeek.Wednesday);
 
-            AreEqual(DayOfWeek.Wednesday, next.DayOfWeek);
-            AreEqual(6, next.Day);
+            AreEqual(DayOfWeek.Wednesday, previous.DayOfWeek);
+            AreEqual(6, previous.Day);
 
-            next = next.ToPrevious(DayOfWeek.Monday);
-            AreEqual(DayOfWeek.Monday, next.DayOfWeek);
-            AreEqual(4, next.Day);
+            previous = previous.ToPrevious(DayOfWeek.Monday);
+            AreEqual(DayOfWeek.Monday, previous.DayOfWeek);
+            AreEqual(4, previous.Day);
         }
 
         [TestMethod]
         public void TestToPreviousWithTime()
         {
-            DateTime next = new DateTime(2016, 1, 7, 19, 52, 34).ToPrevious(DayOfWeek.Wednesday);
+            DateTime previous = new DateTime(2016, 1, 7, 19, 52, 34).ToPrevious(DayOfWeek.Wednesday);
 
-            AreEqual(DayOfWeek.Wednesday, next.DayOfWeek);
-            AreEqual(new DateTime(2016, 1, 6, 19, 52, 34), next);
+            AreEqual(DayOfWeek.Wednesday, previous.DayOfWeek);
+            AreEqual(new DateTime(2016, 1, 6, 19, 52, 34), previous);
         }
 
         [TestMethod]
         public void TestToPreviousDayOfWeekIsSameReturnsPreviousOccurrence()
         {
-            DateTime next = new DateTime(2016, 1, 7).ToPrevious(DayOfWeek.Thursday);
+            DateTime previous = new DateTime(2016, 1, 7).ToPrevious(DayOfWeek.Thursday);
 
-            AreEqual(DayOfWeek.Thursday, next.DayOfWeek);
-            AreEqual(31, next.Day);
+            AreEqual(DayOfWeek.Thursday, previous.DayOfWeek);
+            AreEqual(31, previous.Day);
         }
         #endregion
 
