@@ -27,4 +27,4 @@ Documentation is available in the project [Wiki](https://github.com/SaintOswald/
 
 ## Compatibility
 
-Due to the use of new C# 6.0 features .NET Framework 4.6 is required
+Targets .NET Framework 4 or later

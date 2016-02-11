@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>See: https://github.com/SaintOswald/SaintOswald.Libraries.Extensions/releases</releaseNotes>
-    <copyright>Copyright © Saint Oswald 2015</copyright>
+    <copyright>Copyright © Saint Oswald 2015 - 2016</copyright>
     <tags>SaintOswald Libraries Extensions C#</tags>
   </metadata>
   <files>
