@@ -172,6 +172,36 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         }
 
         /// <summary>
+        /// Returns everything after the first occurrence of the specified delimiter
+        /// </summary>
+        /// <param name="str">
+        /// The string to return everything after the first occurrence of the delimiter for
+        /// </param>
+        /// <param name="delimiter">The delimiter to return everything after</param>
+        /// <param name="comparisonType">
+        /// The String Comparison Type to use (optional - defaults to StringComparison.Ordinal)
+        /// </param>
+        /// <returns>
+        /// Returns everything after the first occurrence of the specified delimiter if it exists
+        /// within the given string, otherwise returns null
+        /// </returns>
+        /// <exception cref="System.ArgumentException">
+        /// Thrown when the specified delimiter is null or empty
+        /// </exception>
+        public static string EverythingAfterFirst(this string str, string delimiter, StringComparison comparisonType = StringComparison.Ordinal)
+        {
+            if (delimiter.IsNullOrEmpty())
+            {
+                throw new ArgumentException("Delimiter cannot be null or empty", nameof(delimiter));
+            }
+
+            if (str.IsNullOrEmpty()) { return null; }
+
+            int position = str.IndexOf(delimiter, comparisonType);
+            return (position == -1 || position == str.Length - 1) ? null : str.Substring(position + delimiter.Length);
+        }
+
+        /// <summary>
         /// Returns everything after the last occurrence of the specified delimiter
         /// </summary>
         /// <param name="str">

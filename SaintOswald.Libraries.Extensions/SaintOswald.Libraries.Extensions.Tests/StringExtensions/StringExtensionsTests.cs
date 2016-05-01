@@ -283,7 +283,13 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         [TestMethod]
         public void TestEverythingBeforeLast()
         {
-            AreEqual("test@example.co", "test@example.co.uk".EverythingBeforeLast("."));
+            AreEqual("test", "test@example.com".EverythingBeforeLast("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeLastMultipleDelimitersReturnsBeforeLast()
+        {
+            AreEqual("test@something", "test@something@example.com".EverythingBeforeLast("@"));
         }
 
         [TestMethod]
@@ -339,6 +345,72 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         }
         #endregion
 
+        #region EverythingAfterFirst
+        [TestMethod]
+        public void TestEverythingAfterFirst()
+        {
+            AreEqual("example.com", "test@example.com".EverythingAfterFirst("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterFirstMultipleDelimitersReturnsAfterFirst()
+        {
+            AreEqual("something@example.com", "test@something@example.com".EverythingAfterFirst("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterFirstMultiCharacterDelimiter()
+        {
+            AreEqual("xample.com", "test@example.com".EverythingAfterFirst("t@e"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterFirstDelimiterNotInStringReturnsNull()
+        {
+            IsNull("test@example.com".EverythingAfterFirst("-"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterFirstDelimiterLastCharacterReturnsNull()
+        {
+            IsNull("test@example.co.uk".EverythingAfterFirst("k"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterFirstSpecifyStringComparison()
+        {
+            IsNull("test@example.com".EverythingAfterFirst("@E"));
+            AreEqual("xample.com", "test@example.com".EverythingAfterFirst("@E", StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterFirstStringNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.EverythingAfterFirst("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingAfterFirstStringEmptyReturnsNull()
+        {
+            IsNull("".EverythingAfterFirst("@"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestEverythingAfterFirstDelimiterNullThrowsException()
+        {
+            "test@example.com".EverythingAfterFirst(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestEverythingAfterFirstDelimiterEmptyThrowsException()
+        {
+            "test@example.com".EverythingAfterFirst("");
+        }
+        #endregion
+
         #region EverythingAfterLast
         [TestMethod]
         public void TestEverythingAfterLast()
@@ -361,13 +433,13 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         [TestMethod]
         public void TestEverythingAfterLastDelimiterNotInStringReturnsNull()
         {
-            Assert.IsNull("test@example.com".EverythingAfterLast("-"));
+            IsNull("test@example.com".EverythingAfterLast("-"));
         }
 
         [TestMethod]
         public void TestEverythingAfterLastDelimiterLastCharacterReturnsNull()
         {
-            Assert.IsNull("test@example.com".EverythingAfterLast("m"));
+            IsNull("test@example.com".EverythingAfterLast("m"));
         }
 
         [TestMethod]
