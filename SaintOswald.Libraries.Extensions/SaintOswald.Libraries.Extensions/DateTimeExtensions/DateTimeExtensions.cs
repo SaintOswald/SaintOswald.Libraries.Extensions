@@ -293,8 +293,8 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// </returns>
         public static DateTime ToNext(this DateTime dateTime, DayOfWeek dayOfWeek)
         {
-            int startDayOfWeek = (int)dateTime.DayOfWeek;
-            int endDayOfWeek = (int)dayOfWeek;
+            var startDayOfWeek = (int)dateTime.DayOfWeek;
+            var endDayOfWeek = (int)dayOfWeek;
 
             return (endDayOfWeek <= startDayOfWeek) ? dateTime.AddDays((endDayOfWeek + 7) - startDayOfWeek)
                                                     : dateTime.AddDays(endDayOfWeek - startDayOfWeek);
@@ -314,8 +314,8 @@ namespace SaintOswald.Libraries.Extensions.DateTimeExtensions
         /// </returns>
         public static DateTime ToPrevious(this DateTime dateTime, DayOfWeek dayOfWeek)
         {
-            int startDayOfWeek = (int)dateTime.DayOfWeek;
-            int endDayOfWeek = (int)dayOfWeek;
+            var startDayOfWeek = (int)dateTime.DayOfWeek;
+            var endDayOfWeek = (int)dayOfWeek;
 
             return (endDayOfWeek >= startDayOfWeek) ? dateTime.AddDays((endDayOfWeek - 7) - startDayOfWeek)
                                                     : dateTime.AddDays(endDayOfWeek - startDayOfWeek);

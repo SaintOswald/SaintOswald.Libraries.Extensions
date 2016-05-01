@@ -112,7 +112,7 @@ namespace SaintOswald.Libraries.Extensions.Tests.DateTimeExtensions
         [TestMethod]
         public void TestIsSameTimeAsNoTimeSpecifiedUsesDefaultValue()
         {
-            DateTime dateTime = new DateTime(2016, 1, 6);
+            var dateTime = new DateTime(2016, 1, 6);
             AreEqual(0, dateTime.Hour);
             AreEqual(0, dateTime.Minute);
             AreEqual(0, dateTime.Second);

@@ -375,7 +375,7 @@ namespace SaintOswald.Libraries.Extensions.StringExtensions
         {
             if (str.IsNullOrWhiteSpace()) { return str; }
 
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
 
             foreach (char character in str.Normalize(NormalizationForm.FormD))
             {
