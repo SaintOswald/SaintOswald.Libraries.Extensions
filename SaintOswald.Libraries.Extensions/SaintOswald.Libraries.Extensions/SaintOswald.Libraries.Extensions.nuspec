@@ -15,6 +15,6 @@
     <tags>SaintOswald Libraries Extensions C#</tags>
   </metadata>
   <files>
-    <file src="bin\Release\LICENSE" target="lib\net46\LICENSE" /> 
+    <file src="bin\Release\LICENSE" target="lib\net40\LICENSE" /> 
 </files>
 </package>
