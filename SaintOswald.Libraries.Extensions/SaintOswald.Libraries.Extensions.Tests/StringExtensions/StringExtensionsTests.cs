@@ -279,6 +279,66 @@ namespace SaintOswald.Libraries.Extensions.Tests.StringExtensions
         }
         #endregion
 
+        #region EverythingBeforeLast
+        [TestMethod]
+        public void TestEverythingBeforeLast()
+        {
+            AreEqual("test@example.co", "test@example.co.uk".EverythingBeforeLast("."));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeLastMultiCharacterDelimiter()
+        {
+            AreEqual("test@example.com", "test@example.com.com".EverythingBeforeLast(".com"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeLastDelimiterNotInStringReturnsNull()
+        {
+            IsNull("test@example.com".EverythingBeforeLast("-"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeLastDelimiterFirstCharacterReturnsNull()
+        {
+            IsNull("demo@example.com".EverythingBeforeLast("d"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeLastSpecifyStringComparison()
+        {
+            IsNull("test@example.com".EverythingBeforeLast("E"));
+            AreEqual("test@exampl", "test@example.com".EverythingBeforeLast("E", StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeLastStringNullReturnsNull()
+        {
+            string s = null;
+            IsNull(s.EverythingBeforeLast("@"));
+        }
+
+        [TestMethod]
+        public void TestEverythingBeforeLastStringEmptyReturnsNull()
+        {
+            IsNull("".EverythingBeforeLast("@"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestEverythingBeforeLastDelimiterNullThrowsException()
+        {
+            "test@example.com".EverythingBeforeLast(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestEverythingBeforeLastDelimiterEmptyThrowsException()
+        {
+            "test@example.com".EverythingBeforeLast("");
+        }
+        #endregion
+
         #region EverythingAfterLast
         [TestMethod]
         public void TestEverythingAfterLast()
