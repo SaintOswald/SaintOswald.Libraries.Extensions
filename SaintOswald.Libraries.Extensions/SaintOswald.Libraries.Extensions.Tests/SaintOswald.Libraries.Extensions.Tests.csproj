@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DateTimeExtensions\DateTimeExtensionsTests.cs" />
+    <Compile Include="FileInfoExtensions\FileInfoExtensionsTests.cs" />
     <Compile Include="LongExtensions\LongExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions\StringExtensionsTests.cs" />
@@ -63,6 +64,11 @@
       <Project>{7c1ab548-a755-4b5d-89de-9db09ee0064a}</Project>
       <Name>SaintOswald.Libraries.Extensions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FileInfoExtensionsTestFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

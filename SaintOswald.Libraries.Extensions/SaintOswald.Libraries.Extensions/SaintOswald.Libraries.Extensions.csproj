@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DateTimeExtensions\DateTimeExtensions.cs" />
+    <Compile Include="FileInfoExtensions\FileInfoExtensions.cs" />
     <Compile Include="LongExtensions\LongExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions\StringExtensions.cs" />
